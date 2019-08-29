@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <div class="alert alert-danger">
+            <h2 class="text-center">Something went wrong...</h2>
+            <h4 class="text-center">Please try again later!</h4>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

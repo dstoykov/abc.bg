@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a2de3573-901c-427d-8821-1f13f1921dae" name="Default" comment=".idea added.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Java_Web_Course_Project$CourseprojectApplication.ic" NAME="CourseprojectApplication Coverage Results" MODIFIED="1552515881444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dst.courseproject.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Q0mon85QCG8ma9F9HAsmRuXTEE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="Deb&#9;ACTION&#9;ActivateDebugToolWindow" />
+    <property name="ToolWindowDebug.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553723654632" />
+    <property name="extract.method.default.visibility" value="packageLocal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dst.courseproject.controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\static\styles" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\java\dst\abc_bg\exceptions" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\fragments" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dst.abc_bg.config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\templates" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\error" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static\images" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\error" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AbcBgApplication">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="abc.bg" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dst.courseproject.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dst.courseproject.services" />
+      <option name="MAIN_CLASS_NAME" value="dst.courseproject.services.CategoryServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="abc.bg" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dst.courseproject.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dst.courseproject.services" />
+      <option name="MAIN_CLASS_NAME" value="dst.courseproject.services.UserServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTests.userService_getDeletedUserServiceModelById_returnServiceModel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="abc.bg" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dst.courseproject.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dst.courseproject.services" />
+      <option name="MAIN_CLASS_NAME" value="dst.courseproject.services.UserServiceTests" />
+      <option name="METHOD_NAME" value="userService_getDeletedUserServiceModelById_returnServiceModel" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserUtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="abc.bg" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dst.courseproject.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dst.courseproject.util" />
+      <option name="MAIN_CLASS_NAME" value="dst.courseproject.util.UserUtilsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AbcBgApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="abc.bg" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dst.abc_bg.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dst.abc_bg.AbcBgApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.UserServiceTests" />
+      <item itemvalue="JUnit.CategoryServiceTests" />
+      <item itemvalue="JUnit.UserServiceTests.userService_getDeletedUserServiceModelById_returnServiceModel" />
+      <item itemvalue="JUnit.UserUtilsTest" />
+      <item itemvalue="Spring Boot.AbcBgApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AbcBgApplication" />
+        <item itemvalue="JUnit.UserUtilsTest" />
+        <item itemvalue="JUnit.UserServiceTests" />
+        <item itemvalue="JUnit.UserServiceTests.userService_getDeletedUserServiceModelById_returnServiceModel" />
+        <item itemvalue="JUnit.CategoryServiceTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.013462977" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@396b5097" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@396b5097" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f27dc5d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Димитър\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2de3573-901c-427d-8821-1f13f1921dae" name="Default" comment="" />
+      <created>1521141040822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1521141040822</updated>
+      <workItem from="1521141050390" duration="4120000" />
+      <workItem from="1521196498232" duration="37000" />
+      <workItem from="1521219447871" duration="1719000" />
+      <workItem from="1521459030648" duration="9810000" />
+      <workItem from="1521479716170" duration="2495000" />
+      <workItem from="1521527064612" duration="6532000" />
+      <workItem from="1521561055553" duration="1749000" />
+      <workItem from="1521577897927" duration="2771000" />
+      <workItem from="1521580784491" duration="153000" />
+      <workItem from="1521653676465" duration="289000" />
+      <workItem from="1521655039551" duration="452000" />
+      <workItem from="1521660836567" duration="570000" />
+      <workItem from="1521731551678" duration="1494000" />
+      <workItem from="1521738601966" duration="2536000" />
+      <workItem from="1522320535713" duration="8611000" />
+      <workItem from="1522422159326" duration="3083000" />
+      <workItem from="1522503302336" duration="11955000" />
+      <workItem from="1522588982289" duration="6197000" />
+      <workItem from="1522654551168" duration="3029000" />
+      <workItem from="1522662207165" duration="546000" />
+      <workItem from="1522664560976" duration="9144000" />
+      <workItem from="1522692989583" duration="7166000" />
+      <workItem from="1522747311097" duration="3642000" />
+      <workItem from="1522767915935" duration="2708000" />
+      <workItem from="1522853264039" duration="8006000" />
+      <workItem from="1522930972900" duration="2411000" />
+      <workItem from="1522938822606" duration="1931000" />
+      <workItem from="1523458442766" duration="2824000" />
+      <workItem from="1523475225213" duration="16109000" />
+      <workItem from="1523597956877" duration="24129000" />
+      <workItem from="1523718445787" duration="2894000" />
+      <workItem from="1523726759956" duration="8112000" />
+      <workItem from="1523797574180" duration="6477000" />
+      <workItem from="1523816754546" duration="2788000" />
+      <workItem from="1523820315736" duration="5414000" />
+      <workItem from="1523869289505" duration="1327000" />
+      <workItem from="1523874520122" duration="9510000" />
+      <workItem from="1523902256727" duration="6133000" />
+      <workItem from="1523993073448" duration="4362000" />
+      <workItem from="1524054963706" duration="627000" />
+      <workItem from="1524056679088" duration="945000" />
+      <workItem from="1524063282463" duration="9130000" />
+      <workItem from="1524078199569" duration="4166000" />
+      <workItem from="1524133532999" duration="5976000" />
+      <workItem from="1524142131363" duration="741000" />
+      <workItem from="1524227247463" duration="16993000" />
+      <workItem from="1524297690832" duration="5275000" />
+      <workItem from="1524393516392" duration="5850000" />
+      <workItem from="1524687779429" duration="3383000" />
+      <workItem from="1551366459690" duration="20008000" />
+      <workItem from="1551430734887" duration="4122000" />
+      <workItem from="1551436917633" duration="10486000" />
+      <workItem from="1551543098972" duration="11589000" />
+      <workItem from="1552491605296" duration="10012000" />
+      <workItem from="1552555125249" duration="21277000" />
+      <workItem from="1552586645642" duration="2333000" />
+      <workItem from="1552602918865" duration="644000" />
+      <workItem from="1552836564883" duration="8299000" />
+      <workItem from="1552904389769" duration="17170000" />
+      <workItem from="1553438226305" duration="5557000" />
+      <workItem from="1553687601642" duration="1607000" />
+      <workItem from="1553704274555" duration="8334000" />
+      <workItem from="1553766550661" duration="19593000" />
+      <workItem from="1553855126503" duration="2043000" />
+      <workItem from="1553862579855" duration="18114000" />
+      <workItem from="1553940877194" duration="7552000" />
+      <workItem from="1554028991073" duration="2082000" />
+      <workItem from="1554048180573" duration="5033000" />
+      <workItem from="1554103133324" duration="11682000" />
+      <workItem from="1554219459483" duration="12934000" />
+      <workItem from="1554297778649" duration="10359000" />
+      <workItem from="1554366361593" duration="1237000" />
+      <workItem from="1554369064544" duration="3130000" />
+      <workItem from="1554626559031" duration="1895000" />
+      <workItem from="1554630380021" duration="21153000" />
+      <workItem from="1554733088545" duration="1916000" />
+      <workItem from="1554741010030" duration="3853000" />
+      <workItem from="1554811352750" duration="16504000" />
+      <workItem from="1554890443840" duration="901000" />
+      <workItem from="1554898864850" duration="11830000" />
+      <workItem from="1554916899340" duration="2705000" />
+      <workItem from="1554972148858" duration="8377000" />
+      <workItem from="1554986577924" duration="8251000" />
+      <workItem from="1555009826111" duration="3745000" />
+      <workItem from="1555061977323" duration="1211000" />
+      <workItem from="1555069209124" duration="4943000" />
+      <workItem from="1555096352807" duration="5680000" />
+      <workItem from="1555246526116" duration="6933000" />
+      <workItem from="1555321673798" duration="11044000" />
+      <workItem from="1555346761809" duration="2899000" />
+      <workItem from="1555352070973" duration="3860000" />
+      <workItem from="1555407820914" duration="3967000" />
+      <workItem from="1555415033300" duration="96000" />
+      <workItem from="1555511891560" duration="7810000" />
+      <workItem from="1555594233799" duration="18836000" />
+      <workItem from="1555663975371" duration="32425000" />
+      <workItem from="1555749713089" duration="39146000" />
+      <workItem from="1555847044346" duration="29872000" />
+      <workItem from="1555919022594" duration="14462000" />
+      <workItem from="1555946003995" duration="2585000" />
+      <workItem from="1555950879103" duration="1080000" />
+      <workItem from="1555956768382" duration="81000" />
+      <workItem from="1556005972408" duration="2020000" />
+      <workItem from="1556300706498" duration="3547000" />
+      <workItem from="1556379138312" duration="7884000" />
+      <workItem from="1556471584886" duration="5324000" />
+      <workItem from="1556524643021" duration="2615000" />
+      <workItem from="1556541914087" duration="4542000" />
+      <workItem from="1556557102404" duration="710000" />
+      <workItem from="1566916068215" duration="11006000" />
+      <workItem from="1567011301229" duration="1133000" />
+      <workItem from="1567012663556" duration="2609000" />
+      <workItem from="1567065510000" duration="7314000" />
+      <workItem from="1567076795801" duration="1614000" />
+      <workItem from="1567078596294" duration="174000" />
+      <workItem from="1567078838507" duration="882000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initialize project, login, logout and register functionality added.">
+      <created>1567078149843</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567078149843</updated>
+    </task>
+    <task id="LOCAL-00002" summary=".idea added.">
+      <created>1567078668794</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1567078668794</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Initialize project, login, logout and register functionality added." />
+    <MESSAGE value=".idea added." />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea added." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/dst/courseproject/tasks/DailyUsersAndVideosCountInformationTaskTest.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/dst/courseproject/entities/UserTests.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Java_Web_Course_Project$UserUtilsTest.ic" NAME="UserUtilsTest Coverage Results" MODIFIED="1555348979446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dst.courseproject.util.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>9.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

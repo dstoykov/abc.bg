@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="abc.bg:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>abc.bg</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="abc_bg-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="abc.bg:war exploded" />
+    </root>
+  </artifact>
+</component>
