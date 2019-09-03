@@ -14,9 +14,11 @@
     <div class="container">
         <h2>Sent E-mails</h2>
         <hr class="hr-hidden"/>
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <thead>
             <tr>
+                <th scope="col">View</th>
+                <th scope="col">Delete</th>
                 <th scope="col">To</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Sent on</th>
@@ -24,9 +26,11 @@
             </thead>
             <tbody>
             <th:block th:each="mail : ${mails}">
-                <tr class="table-info">
+                <tr class="table-success">
+                    <td><a th:href="@{/mails/sent/{id}(id=${mail.getId()})}" type="button" class="btn btn-info btn-sm">View</a></td>
+                    <td><a th:href="@{/mails/sent/delete/{id}(id=${mail.getId()})}" type="button" class="btn btn-danger btn-sm">Delete</a></td>
                     <td th:text="${mail.getRecipient()}"></td>
-                    <td th:text="${mail.getSubject()}"></td>
+                    <td th:text="${mail.getSubject().length() > 50 ? mail.getSubject().substring(0, 50) + '...' : mail.getSubject()}"></td>
                     <td th:text="${#temporals.format(mail.getSentOn(), 'dd-MM-yyyy HH:mm')}"></td>
                 </tr>
             </th:block>

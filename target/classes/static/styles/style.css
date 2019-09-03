@@ -39,3 +39,9 @@ body {
 hr.width {
     width: 92%;
 }
+.hr-bottom {
+    margin-top: 30px;
+}
+.btn-bottom {
+    margin-top: 20px;
+}

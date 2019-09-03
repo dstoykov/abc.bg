@@ -21,7 +21,6 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-    private static final String USER_ROLE = "USER";
     private static final String PASSWORD_MISMATCH_EXCEPTION_MSG = "Passwords mismatch!";
     private static final String USER_ALREADY_EXIST_EXCEPTION_MSG = "User with the sam email already exists!";
 
@@ -79,7 +78,7 @@ public class UserServiceImpl implements UserService {
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
 
-        Role role = this.roleService.getRoleByAuthority(USER_ROLE);
+        Role role = this.roleService.getUserRole();
         user.addRole(role);
         this.userRepository.save(user);
         this.addUserToRole(user, role);

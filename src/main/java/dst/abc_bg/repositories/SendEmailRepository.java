@@ -10,4 +10,8 @@ import java.util.Set;
 @Repository
 public interface SendEmailRepository extends JpaRepository<SendEmail, String> {
     Set<SendEmail> getAllBySenderAndDeletedOnNullOrderBySentOnDesc(User sender);
+
+    SendEmail getByIdEqualsAndSenderEqualsAndDeletedOnNull(String id, User sender);
+
+    Set<SendEmail> findAllByIdNotNullOrderBySentOnDesc();
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <script th:src="@{/static/scripts/showNoty.js}"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <h2 th:text="${mail.getSubject()}"></h2>
+        <hr class="hr-hidden"/>
+        <div class="col-md-9">
+            <p class="text-primary" th:text="${'From: ' + mail.getSender().getUsername() + '@abc.bg'}"></p>
+        </div>
+        <div class="col-md-9">
+            <p class="text-primary" th:text="${'To:   ' + mail.getRecipient()}"></p>
+        </div>
+        <hr/>
+        <div class="container">
+            <p class="text-info" th:text="${mail.getContent()}"></p>
+        </div>
+        <hr class="hr-bottom"/>
+        <div class="container" th:if="${mail.getDeletedOn() != null}">
+            <h5 class="text-danger" th:text="${'Deleted on: ' + #temporals.format(mail.getDeletedOn(), 'dd-MM-yyyy HH:mm')}"></h5>
+        </div>
+    </div>
+    <hr class="hr-hidden"/>
+</main>
+<footer class="footer"><!--class="footer-sticky"-->
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

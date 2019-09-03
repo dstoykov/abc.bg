@@ -9,16 +9,13 @@ import dst.abc_bg.util.EmailReceiver;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.internet.MimeMultipart;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -27,6 +24,8 @@ import java.util.regex.Pattern;
 @Service
 @Transactional
 public class ReceiveEmailServiceImpl implements ReceiveEmailService {
+    private static final String EMAIL_IN_BRACKETS_PATTERN = "<(.+)>";
+
     private final ReceiveEmailRepository emailRepository;
     private final EmailReceiver emailReceiver;
     private final UserService userService;
@@ -49,18 +48,21 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return viewModels;
     }
 
-    @Override
-    public Set<ReceiveEmail> receiveEmails() throws Exception {
-        Pattern pattern = Pattern.compile("<(.+)>");
-        Matcher matcher;
-        Message[] messages = this.emailReceiver.receiveEmail();
-        int all = this.emailRepository.findAll().size();
-        int newMessagesCount = messages.length - all;
+    private boolean saveEmail(Set<ReceiveEmail> newMessages) {
+        this.emailRepository.saveAll(newMessages);
+        return true;
+    }
 
+    private int getNewMessagesCount(int messagesLength) {
+        int all = this.emailRepository.findAll().size();
+        return messagesLength - all;
+    }
+
+    private Set<ReceiveEmail> getMessagesAsSetOfReceiveEmails(Pattern pattern, Message[] messages, int newMessagesCount) throws IOException, MessagingException {
         Set<ReceiveEmail> newMessages = new LinkedHashSet<>();
-        for (int i = 0; i < newMessagesCount; i++) {
-            String username = messages[i].getContent().toString();
-//            username = username.split(" ")[1].split("@")[0];
+        Matcher matcher;
+        for (int i = messages.length - newMessagesCount; i < messages.length; i++) {
+//            String username = messages[i].getContent().toString().split(" ")[1].split("@")[0];
 //            UserServiceModel recipient = this.userService.getUserServiceModelByUsername(username);
 //            receiveEmail.setRecipient(this.mapper.map(recipient, User.class));
             ReceiveEmail receiveEmail = new ReceiveEmail();
@@ -76,7 +78,17 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
             newMessages.add(receiveEmail);
         }
 
-        this.emailRepository.saveAll(newMessages);
+        return newMessages;
+    }
+
+    @Override
+    public Set<ReceiveEmail> receiveEmails() throws Exception {
+        Pattern pattern = Pattern.compile(EMAIL_IN_BRACKETS_PATTERN);
+        Message[] messages = this.emailReceiver.receiveEmail();
+        int newMessagesCount = getNewMessagesCount(messages.length);
+
+        Set<ReceiveEmail> newMessages = getMessagesAsSetOfReceiveEmails(pattern, messages, newMessagesCount);
+        saveEmail(newMessages);
 
         return newMessages;
     }
@@ -87,5 +99,37 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         Set<ReceiveEmailViewModel> receiveEmailViewModels = this.mapListOfEmailToListOfViewModel(allByDeletedOnNull);
 
         return receiveEmailViewModels;
+    }
+
+    @Override
+    public ReceiveEmailViewModel getNonDeletedReceivedEmailViewModelById(String id) {
+        ReceiveEmailViewModel viewModel = this.mapper.map(this.emailRepository.getByIdEqualsAndDeletedOnNull(id), ReceiveEmailViewModel.class);
+        return viewModel;
+    }
+
+    @Override
+    public boolean deleteMail(String id) {
+        ReceiveEmail email = this.emailRepository.getByIdEqualsAndDeletedOnNull(id);
+        email.setDeletedOn(LocalDateTime.now());
+
+        this.emailRepository.save(email);
+
+        return true;
+    }
+
+    @Override
+    public Set<ReceiveEmailViewModel> allReceivedMails() {
+        Set<ReceiveEmail> allByIdNotNullOrderBySentOnDesc = this.emailRepository.findAllByIdNotNullOrderBySentOnDesc();
+        Set<ReceiveEmailViewModel> viewModels = this.mapListOfEmailToListOfViewModel(allByIdNotNullOrderBySentOnDesc);
+
+        return viewModels;
+    }
+
+    @Override
+    public ReceiveEmailViewModel getViewModelById(String id) {
+        ReceiveEmail one = this.emailRepository.getOne(id);
+        ReceiveEmailViewModel viewModel = this.mapper.map(one, ReceiveEmailViewModel.class);
+
+        return viewModel;
     }
 }

@@ -17,19 +17,8 @@ public class EmailSender {
     private static final String TRUE = "true";
 
     public boolean sendEmail(SendEmailServiceModel emailServiceModel) throws MessagingException {
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", SMTP_HOST);
-        properties.put("mail.smtp.port", SMTP_PORT);
-        properties.put("mail.smtp.auth", TRUE);
-        properties.put("mail.smtp.starttls.enable", TRUE);
-
-        Session session = Session.getDefaultInstance(properties, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(ACCOUNT_NAME, PASSWORD);
-            }
-        });
-        session.setDebug(true);
+        Properties properties = configProperties();
+        Session session = configSession(properties);
 
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(ACCOUNT_NAME));
@@ -40,5 +29,27 @@ public class EmailSender {
         Transport.send(message);
 
         return true;
+    }
+
+    private Properties configProperties() {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", SMTP_HOST);
+        properties.put("mail.smtp.port", SMTP_PORT);
+        properties.put("mail.smtp.auth", TRUE);
+        properties.put("mail.smtp.starttls.enable", TRUE);
+
+        return properties;
+    }
+
+    private Session configSession(Properties properties) {
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(ACCOUNT_NAME, PASSWORD);
+            }
+        });
+        session.setDebug(true);
+
+        return session;
     }
 }

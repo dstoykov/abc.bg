@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <script th:src="@{/static/scripts/showNoty.js}"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <h2>Received E-mails</h2>
+        <hr class="hr-hidden"/>
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th scope="col">View</th>
+                <th scope="col">From</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Sent on</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="mail : ${mails}">
+                <tr th:classappend="${mail.getDeletedOn() == null} ? 'table-success' : 'table-danger'">
+                    <td><a th:href="@{/admin/mails/inbox/{id}(id=${mail.getId()})}" type="button" class="btn btn-outline-primary btn-sm">View</a></td>
+                    <td th:text="${mail.getSender()}"></td>
+                    <td th:text="${mail.getSubject().length() > 35 ? mail.getSubject().substring(0, 35) + '...' : mail.getSubject()}"></td>
+                    <td th:text="${#temporals.format(mail.getSentOn(), 'dd-MM-yyyy HH:mm')}"></td>
+                    <td th:text="${mail.getDeletedOn() == null} ? 'EXISTING' : 'DELETED'"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <hr class="hr-hidden"/>
+</main>
+<footer class="footer"><!--class="footer-sticky"-->
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

@@ -2,6 +2,7 @@ package dst.abc_bg.services.impl;
 
 import dst.abc_bg.entities.SendEmail;
 import dst.abc_bg.entities.User;
+import dst.abc_bg.exceptions.CannotAccessMailException;
 import dst.abc_bg.models.binding.SendEmailNewBindingModel;
 import dst.abc_bg.models.service.SendEmailServiceModel;
 import dst.abc_bg.models.service.UserServiceModel;
@@ -9,13 +10,11 @@ import dst.abc_bg.models.view.SendEmailViewModel;
 import dst.abc_bg.repositories.SendEmailRepository;
 import dst.abc_bg.services.SendEmailService;
 import dst.abc_bg.services.UserService;
-import dst.abc_bg.util.EmailReceiver;
 import dst.abc_bg.util.EmailSender;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -25,6 +24,8 @@ import java.util.Set;
 @Service
 @Transactional
 public class SendEmailServiceImpl implements SendEmailService {
+    public static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
+
     private static final String FROM = "From";
     private static final String SPACE = " ";
     private static final String AT = "@";
@@ -65,6 +66,29 @@ public class SendEmailServiceImpl implements SendEmailService {
         return formattedContent.toString();
     }
 
+    private boolean saveEmail(SendEmailServiceModel emailServiceModel) {
+        SendEmail email = this.mapper.map(emailServiceModel, SendEmail.class);
+        this.emailRepository.save(email);
+
+        return true;
+    }
+
+    private boolean checkIfEmailIsNull(SendEmail email) throws CannotAccessMailException {
+        if (email == null) {
+            throw new CannotAccessMailException(CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
+        }
+
+        return true;
+    }
+
+    private boolean checkIfEmailIsDeleted(SendEmail email) throws CannotAccessMailException {
+        if (email.getDeletedOn() != null) {
+            throw new CannotAccessMailException(CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
+        }
+
+        return true;
+    }
+
     @Override
     public SendEmailServiceModel sendEmail(SendEmailNewBindingModel bindingModel, String sender) throws MessagingException {
         SendEmailServiceModel emailServiceModel = this.mapper.map(bindingModel, SendEmailServiceModel.class);
@@ -74,18 +98,59 @@ public class SendEmailServiceImpl implements SendEmailService {
 
         this.emailSender.sendEmail(emailServiceModel);
 
-        SendEmail email = this.mapper.map(emailServiceModel, SendEmail.class);
-        this.emailRepository.save(email);
+        this.saveEmail(emailServiceModel);
 
         return emailServiceModel;
     }
 
     @Override
-    public Set<SendEmailViewModel> allNonDeletedSentMailsFromUser(String name) {
+    public Set<SendEmailViewModel> allNonDeletedSentMailsForUser(String name) {
         UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
         Set<SendEmail> emails = this.emailRepository.getAllBySenderAndDeletedOnNullOrderBySentOnDesc(this.mapper.map(userServiceModel, User.class));
 
         Set<SendEmailViewModel> viewModels = this.mapListOfEmailToListOfViewModel(emails);
         return viewModels;
+    }
+
+    @Override
+    public SendEmailViewModel getNonDeletedSendEmailViewModelById(String id, String name) throws CannotAccessMailException {
+        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
+        SendEmail email = this.emailRepository.getByIdEqualsAndSenderEqualsAndDeletedOnNull(id, this.mapper.map(userServiceModel, User.class));
+
+        this.checkIfEmailIsNull(email);
+        this.checkIfEmailIsDeleted(email);
+
+        SendEmailViewModel viewModel = this.mapper.map(email, SendEmailViewModel.class);
+
+        return viewModel;
+    }
+
+    @Override
+    public boolean deleteMail(String id, String name) throws CannotAccessMailException {
+        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
+        SendEmail email = this.emailRepository.getByIdEqualsAndSenderEqualsAndDeletedOnNull(id, this.mapper.map(userServiceModel, User.class));
+
+        this.checkIfEmailIsNull(email);
+
+        email.setDeletedOn(LocalDateTime.now());
+        this.emailRepository.save(email);
+
+        return true;
+    }
+
+    @Override
+    public Set<SendEmailViewModel> allSentMails() {
+        Set<SendEmail> allByIdNotNullOrderBySentOnDesc = this.emailRepository.findAllByIdNotNullOrderBySentOnDesc();
+        Set<SendEmailViewModel> viewModels = this.mapListOfEmailToListOfViewModel(allByIdNotNullOrderBySentOnDesc);
+
+        return viewModels;
+    }
+
+    @Override
+    public SendEmailViewModel getSendEmailViewModelById(String id) {
+        SendEmail one = this.emailRepository.getOne(id);
+        SendEmailViewModel viewModel = this.mapper.map(one, SendEmailViewModel.class);
+
+        return viewModel;
     }
 }

@@ -9,4 +9,8 @@ import java.util.Set;
 @Repository
 public interface ReceiveEmailRepository extends JpaRepository<ReceiveEmail, String> {
     Set<ReceiveEmail> getAllByDeletedOnNull();
+
+    ReceiveEmail getByIdEqualsAndDeletedOnNull(String id);
+
+    Set<ReceiveEmail> findAllByIdNotNullOrderBySentOnDesc();
 }

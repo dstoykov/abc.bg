@@ -11,6 +11,8 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
+    private static final String USER_ROLE = "USER";
+
     private final RoleRepository roleRepository;
 
     @Autowired
@@ -18,9 +20,13 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    @Override
-    public Role getRoleByAuthority(String authority) {
+    private Role getRoleByAuthority(String authority) {
         return this.roleRepository.findByAuthority(authority);
+    }
+
+    @Override
+    public Role getUserRole() {
+        return this.getRoleByAuthority(USER_ROLE);
     }
 
     @Override

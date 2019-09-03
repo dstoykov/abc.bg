@@ -17,10 +17,10 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     private static final String FAVICON = "/favicon.ico";
 
     private static final String ROOT = "/";
-    private static final String ERROR = "/error";
     private static final String LOGIN = "/users/login";
     private static final String REGISTER = "/users/register";
     private static final String LOGOUT = "/users/logout";
+    private static final String ADMIN_URL = "/admin/**";
     private static final String ADMIN_AUTHORITY = "hasAuthority('ADMIN')";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -39,8 +39,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http
                 .authorizeRequests()
                 .antMatchers(LOGIN, REGISTER).permitAll()
-                //.antMatchers() --> todo admin urls
-                //.access(ADMIN_AUTHORITY)
+                .antMatchers(ADMIN_URL).access(ADMIN_AUTHORITY)
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
