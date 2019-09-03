@@ -40,10 +40,10 @@ public class User implements UserDetails {
     private boolean isEnabled;
 
     @OneToMany(mappedBy = "sender")
-    private Set<Email> sentEmails;
+    private Set<SendEmail> sentEmails;
 
     @OneToMany(mappedBy = "recipient")
-    private Set<Email> receivedEmails;
+    private Set<ReceiveEmail> receivedEmails;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_authorities", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
@@ -145,19 +145,19 @@ public class User implements UserDetails {
         this.authorities = authorities;
     }
 
-    public Set<Email> getSentEmails() {
+    public Set<SendEmail> getSentEmails() {
         return this.sentEmails;
     }
 
-    public void setSentEmails(Set<Email> sentEmails) {
+    public void setSentEmails(Set<SendEmail> sentEmails) {
         this.sentEmails = sentEmails;
     }
 
-    public Set<Email> getReceivedEmails() {
+    public Set<ReceiveEmail> getReceivedEmails() {
         return this.receivedEmails;
     }
 
-    public void setReceivedEmails(Set<Email> receivedEmails) {
+    public void setReceivedEmails(Set<ReceiveEmail> receivedEmails) {
         this.receivedEmails = receivedEmails;
     }
 

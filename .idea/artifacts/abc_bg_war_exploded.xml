@@ -106,6 +106,9 @@
           <element id="library" level="project" name="Maven: org.bytedeco.javacpp-presets:artoolkitplus:windows-x86_64:2.3.1-1.0" />
           <element id="library" level="project" name="Maven: org.bytedeco.javacpp-presets:flandmark:1.07-1.0" />
           <element id="library" level="project" name="Maven: org.bytedeco.javacpp-presets:flandmark:windows-x86_64:1.07-1.0" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
+          <element id="library" level="project" name="Maven: com.sun.mail:smtp:1.4.4" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

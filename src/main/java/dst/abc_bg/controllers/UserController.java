@@ -45,7 +45,7 @@ public class UserController {
             return new ModelAndView("redirect:/");
         }
         modelAndView.setViewName("register");
-        modelAndView.addObject("title", "Login");
+        modelAndView.addObject("title", "Register");
         if (!model.containsAttribute("registerInput")) {
             model.addAttribute("registerInput", new UserRegisterBindingModel());
         }

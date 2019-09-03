@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-    private void checkEmail(UserRegisterBindingModel bindingModel) throws UserAlreadyExistsException {
+    private void checkUsername(UserRegisterBindingModel bindingModel) throws UserAlreadyExistsException {
         if (this.userRepository.findByUsernameEquals(bindingModel.getUsername()) != null) {
             throw new UserAlreadyExistsException(USER_ALREADY_EXIST_EXCEPTION_MSG);
         }
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel register(UserRegisterBindingModel bindingModel) throws PasswordsMismatchException, UserAlreadyExistsException {
-        this.checkEmail(bindingModel);
+        this.checkUsername(bindingModel);
         User user = this.mapper.map(bindingModel, User.class);
         this.checkPasswords(bindingModel, user);
 
@@ -85,5 +85,13 @@ public class UserServiceImpl implements UserService {
         this.addUserToRole(user, role);
 
         return this.mapper.map(user, UserServiceModel.class);
+    }
+
+    @Override
+    public UserServiceModel getUserServiceModelByUsername(String username) {
+        UserServiceModel serviceModel = this.mapper
+                .map(this.userRepository.findUserByUsernameAndDeletedOnNull(username), UserServiceModel.class);
+
+        return serviceModel;
     }
 }

@@ -28,6 +28,7 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="HTML File" />
         <option value="Class" />
@@ -68,7 +69,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553723654632" />
     <property name="extract.method.default.visibility" value="packageLocal" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../abc.bg" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -81,8 +82,18 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dimitar\Desktop\New folder (4)\abc.bg\src\main\resources\templates" />
+      <recent name="D:\Dimitar\Desktop\New folder (4)\abc.bg\src\main\resources\static" />
+      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\templates" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\error" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dst.courseproject.controllers" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dst.abc_bg.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\static\styles" />
@@ -90,16 +101,6 @@
       <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\fragments" />
       <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static" />
       <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dst.abc_bg.config" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\templates" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\error" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static\images" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\error" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -260,12 +261,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@396b5097" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d994e948" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@396b5097" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f27dc5d9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d994e948" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9d18e547" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -399,6 +400,12 @@
       <workItem from="1567076795801" duration="1614000" />
       <workItem from="1567078596294" duration="174000" />
       <workItem from="1567078838507" duration="882000" />
+      <workItem from="1567084559274" duration="17110000" />
+      <workItem from="1567148209376" duration="8480000" />
+      <workItem from="1567345647810" duration="3056000" />
+      <workItem from="1567415333598" duration="22009000" />
+      <workItem from="1567495234817" duration="9693000" />
+      <workItem from="1567505229624" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project, login, logout and register functionality added.">
       <created>1567078149843</created>

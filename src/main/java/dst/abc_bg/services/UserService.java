@@ -8,4 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
     UserServiceModel register(UserRegisterBindingModel userBindingModel) throws PasswordsMismatchException, UserAlreadyExistsException;
+
+    UserServiceModel getUserServiceModelByUsername(String username);
 }

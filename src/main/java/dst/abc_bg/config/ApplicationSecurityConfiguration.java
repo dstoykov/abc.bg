@@ -17,7 +17,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     private static final String FAVICON = "/favicon.ico";
 
     private static final String ROOT = "/";
-    private static final String ERROR = "/errors/**";
+    private static final String ERROR = "/error";
     private static final String LOGIN = "/users/login";
     private static final String REGISTER = "/users/register";
     private static final String LOGOUT = "/users/logout";
@@ -31,14 +31,14 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(STYLES, SCRIPTS, IMAGES);
+        web.ignoring().antMatchers(STYLES, SCRIPTS, IMAGES, FAVICON);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(LOGIN, REGISTER, ERROR).permitAll()
+                .antMatchers(LOGIN, REGISTER).permitAll()
                 //.antMatchers() --> todo admin urls
                 //.access(ADMIN_AUTHORITY)
                 .anyRequest().authenticated()

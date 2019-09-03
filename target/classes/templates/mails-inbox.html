@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <script th:src="@{/static/scripts/showNoty.js}"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <h2>Sent E-mails</h2>
+        <hr class="hr-hidden"/>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">To</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Sent on</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="mail : ${mails}">
+                <tr class="table-success">
+                    <td th:text="${mail.getSender()}"></td>
+                    <td th:text="${mail.getSubject()}"></td>
+                    <td th:text="${#temporals.format(mail.getSentOn(), 'dd-MM-yyyy HH:mm')}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <hr class="hr-hidden"/>
+</main>
+<footer class="footer"><!--class="footer-sticky"-->
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

@@ -20,9 +20,9 @@ public class UserServiceModel {
 
     private LocalDate deletedOn;
 
-    private Set<EmailServiceModel> sentEmails;
+    private Set<SendEmailServiceModel> sentEmails;
 
-    private Set<EmailServiceModel> receivedEmails;
+    private Set<ReceiveEmailServiceModel> receivedEmails;
 
     public UserServiceModel() {
     }
@@ -81,5 +81,21 @@ public class UserServiceModel {
 
     public void setDeletedOn(LocalDate deletedOn) {
         this.deletedOn = deletedOn;
+    }
+
+    public Set<SendEmailServiceModel> getSentEmails() {
+        return this.sentEmails;
+    }
+
+    public void setSentEmails(Set<SendEmailServiceModel> sentEmails) {
+        this.sentEmails = sentEmails;
+    }
+
+    public Set<ReceiveEmailServiceModel> getReceivedEmails() {
+        return this.receivedEmails;
+    }
+
+    public void setReceivedEmails(Set<ReceiveEmailServiceModel> receivedEmails) {
+        this.receivedEmails = receivedEmails;
     }
 }

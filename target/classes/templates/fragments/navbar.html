@@ -31,7 +31,13 @@
 <!--                        <a class="nav-link" th:href="@{/users/profile}">My Profile</a>-->
 <!--                    </li>-->
                     <li sec:authorize="isAuthenticated()" class="nav-item">
-                        <a class="nav-link" th:href="@{/mail/new}">New Message</a>
+                        <a class="nav-link" th:href="@{/mails/new}">New Message</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/mails/sent}">Sent</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/mails/inbox}">Inbox</a>
                     </li>
                     <li sec:authorize="isAuthenticated()" class="nav-item">
                         <form th:action="@{/users/logout}" th:method="POST">

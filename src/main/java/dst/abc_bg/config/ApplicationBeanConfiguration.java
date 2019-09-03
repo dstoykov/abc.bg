@@ -1,5 +1,6 @@
 package dst.abc_bg.config;
 
+import dst.abc_bg.util.EmailSender;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,5 +16,10 @@ public class ApplicationBeanConfiguration {
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public EmailSender sender() {
+        return new EmailSender();
     }
 }

@@ -33,3 +33,9 @@ body {
 .form-centered {
     text-align: center;
 }
+.hr-hidden {
+    display: inline-block;
+}
+hr.width {
+    width: 92%;
+}

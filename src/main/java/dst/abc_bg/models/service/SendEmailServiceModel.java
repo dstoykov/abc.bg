@@ -1,21 +1,23 @@
-package dst.abc_bg.models.view;
-
-import dst.abc_bg.models.service.UserServiceModel;
+package dst.abc_bg.models.service;
 
 import java.time.LocalDateTime;
 
-public class EmailViewModel {
+public class SendEmailServiceModel {
     private String id;
 
     private UserServiceModel sender;
 
-    private UserServiceModel recipient;
+    private String recipient;
+
+    private String subject;
+
+    private String content;
 
     private LocalDateTime sentOn;
 
     private LocalDateTime deletedOn;
 
-    public EmailViewModel() {
+    public SendEmailServiceModel() {
     }
 
     public String getId() {
@@ -34,12 +36,28 @@ public class EmailViewModel {
         this.sender = sender;
     }
 
-    public UserServiceModel getRecipient() {
+    public String getRecipient() {
         return this.recipient;
     }
 
-    public void setRecipient(UserServiceModel recipient) {
+    public void setRecipient(String recipient) {
         this.recipient = recipient;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public LocalDateTime getSentOn() {

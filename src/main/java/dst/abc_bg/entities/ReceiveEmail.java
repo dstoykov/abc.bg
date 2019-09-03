@@ -6,21 +6,26 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "emails")
-public class Email {
+@Table(name = "receive_email")
+public class ReceiveEmail {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(updatable = false, nullable = false)
     private String id;
 
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "seder_id")
-    private User sender;
+    @Column(name = "sender", nullable = false)
+    private String sender;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "recipient_id")
+    @JoinColumn(name = "recipient_id")
     private User recipient;
+
+    @Column(name = "subject", nullable = false)
+    private String subject;
+
+    @Column(name = "content", nullable = false, length = 5000)
+    private String content;
 
     @Column(name = "sent_on", nullable = false)
     private LocalDateTime sentOn;
@@ -28,7 +33,7 @@ public class Email {
     @Column(name = "deleted_on")
     private LocalDateTime deletedOn;
 
-    public Email() {
+    public ReceiveEmail() {
     }
 
     public String getId() {
@@ -39,11 +44,11 @@ public class Email {
         this.id = id;
     }
 
-    public User getSender() {
+    public String getSender() {
         return this.sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
@@ -53,6 +58,22 @@ public class Email {
 
     public void setRecipient(User recipient) {
         this.recipient = recipient;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public LocalDateTime getSentOn() {

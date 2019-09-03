@@ -1,7 +1,6 @@
 package dst.abc_bg.models.view;
 
 import dst.abc_bg.entities.Role;
-import dst.abc_bg.models.service.EmailServiceModel;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -19,9 +18,9 @@ public class UserViewModel {
 
     private Set<Role> authorities;
 
-    private Set<EmailViewModel> sentEmails;
+    private Set<SendEmailViewModel> sentEmails;
 
-    private Set<EmailViewModel> receivedEmails;
+    private Set<ReceiveEmailViewModel> receivedEmails;
 
     public UserViewModel() {
     }
@@ -74,19 +73,19 @@ public class UserViewModel {
         this.authorities = authorities;
     }
 
-    public Set<EmailViewModel> getSentEmails() {
+    public Set<SendEmailViewModel> getSentEmails() {
         return this.sentEmails;
     }
 
-    public void setSentEmails(Set<EmailViewModel> sentEmails) {
+    public void setSentEmails(Set<SendEmailViewModel> sentEmails) {
         this.sentEmails = sentEmails;
     }
 
-    public Set<EmailViewModel> getReceivedEmails() {
+    public Set<ReceiveEmailViewModel> getReceivedEmails() {
         return this.receivedEmails;
     }
 
-    public void setReceivedEmails(Set<EmailViewModel> receivedEmails) {
+    public void setReceivedEmails(Set<ReceiveEmailViewModel> receivedEmails) {
         this.receivedEmails = receivedEmails;
     }
 }

@@ -2,18 +2,22 @@ package dst.abc_bg.models.service;
 
 import java.time.LocalDateTime;
 
-public class EmailServiceModel {
+public class ReceiveEmailServiceModel {
     private String id;
 
-    private UserServiceModel sender;
+    private String sender;
 
     private UserServiceModel recipient;
+
+    private String subject;
+
+    private String content;
 
     private LocalDateTime sentOn;
 
     private LocalDateTime deletedOn;
 
-    public EmailServiceModel() {
+    public ReceiveEmailServiceModel() {
     }
 
     public String getId() {
@@ -24,11 +28,11 @@ public class EmailServiceModel {
         this.id = id;
     }
 
-    public UserServiceModel getSender() {
+    public String getSender() {
         return this.sender;
     }
 
-    public void setSender(UserServiceModel sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
@@ -38,6 +42,22 @@ public class EmailServiceModel {
 
     public void setRecipient(UserServiceModel recipient) {
         this.recipient = recipient;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public LocalDateTime getSentOn() {
@@ -56,3 +76,4 @@ public class EmailServiceModel {
         this.deletedOn = deletedOn;
     }
 }
+
