@@ -71,41 +71,29 @@ public class EmailController {
     }
 
     @GetMapping("/sent/{id}")
-    public ModelAndView sentMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) {
-        try {
-            SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
-            modelAndView.setViewName("mail-sent-details");
-            modelAndView.addObject("title", "Details");
-            modelAndView.addObject("mail", viewModel);
-        } catch (CannotAccessMailException e) {
-            modelAndView.setViewName("redirect:/");
-        }
+    public ModelAndView sentMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+        SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
+        modelAndView.setViewName("mail-sent-details");
+        modelAndView.addObject("title", "Details");
+        modelAndView.addObject("mail", viewModel);
 
         return modelAndView;
     }
 
     @GetMapping("/sent/delete/{id}")
-    public ModelAndView deleteSentMail(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) {
-        try {
-            SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
-            modelAndView.setViewName("mail-sent-delete");
-            modelAndView.addObject("title", "Delete E-mail");
-            modelAndView.addObject("mail", viewModel);
-        } catch (CannotAccessMailException e) {
-            modelAndView.setViewName("redirect:/");
-        }
+    public ModelAndView deleteSentMail(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+        SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
+        modelAndView.setViewName("mail-sent-delete");
+        modelAndView.addObject("title", "Delete E-mail");
+        modelAndView.addObject("mail", viewModel);
 
         return modelAndView;
     }
 
     @PostMapping("/sent/delete/{id}")
-    public ModelAndView deleteSentMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) {
-        try {
-            this.sendEmailService.deleteMail(id, principal.getName());
-            modelAndView.setViewName("redirect:/mails/sent");
-        } catch (CannotAccessMailException e) {
-            modelAndView.setViewName("redirect:/");
-        }
+    public ModelAndView deleteSentMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+        this.sendEmailService.deleteMail(id, principal.getName());
+        modelAndView.setViewName("redirect:/mails/sent");
 
         return modelAndView;
     }
@@ -116,34 +104,34 @@ public class EmailController {
 
         modelAndView.setViewName("mails-inbox");
         modelAndView.addObject("title", "Inbox");
-        modelAndView.addObject("mails", this.receiveEmailService.allNonDeletedReceivedMailsForUser(principal .getName()));
+        modelAndView.addObject("mails", this.receiveEmailService.allNonDeletedReceivedMailsForUser(principal.getName()));
 
         return modelAndView;
     }
 
     @GetMapping("/inbox/{id}")
-    public ModelAndView inboxMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView) {
+    public ModelAndView inboxMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
         modelAndView.setViewName("mail-inbox-details");
         modelAndView.addObject("title", "Details");
-        ReceiveEmailViewModel viewModel = this.receiveEmailService.getNonDeletedReceivedEmailViewModelById(id);
+        ReceiveEmailViewModel viewModel = this.receiveEmailService.getNonDeletedReceivedEmailViewModelById(id, principal.getName());
         modelAndView.addObject("mail", viewModel);
 
         return modelAndView;
     }
 
     @GetMapping("/inbox/delete/{id}")
-    public ModelAndView deleteInboxMail(@PathVariable(name = "id") String id, ModelAndView modelAndView) {
+    public ModelAndView deleteInboxMail(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
         modelAndView.setViewName("mail-inbox-delete");
         modelAndView.addObject("title", "Details");
-        ReceiveEmailViewModel viewModel = this.receiveEmailService.getNonDeletedReceivedEmailViewModelById(id);
+        ReceiveEmailViewModel viewModel = this.receiveEmailService.getNonDeletedReceivedEmailViewModelById(id, principal.getName());
         modelAndView.addObject("mail", viewModel);
 
         return modelAndView;
     }
 
     @PostMapping("/inbox/delete/{id}")
-    public ModelAndView deleteInboxMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView) {
-        this.receiveEmailService.deleteMail(id);
+    public ModelAndView deleteInboxMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+        this.receiveEmailService.deleteMail(id, principal.getName());
         modelAndView.setViewName("redirect:/mails/inbox");
 
         return modelAndView;

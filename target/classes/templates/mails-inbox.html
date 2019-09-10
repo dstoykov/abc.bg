@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/head"></th:block>
-    <script th:src="@{/static/scripts/showNoty.js}"></script>
     <title th:text="${title}"></title>
 </head>
 <body>
@@ -12,7 +11,7 @@
 </header>
 <main>
     <div class="container">
-        <h2>Sent E-mails</h2>
+        <h2>Inbox</h2>
         <hr class="hr-hidden"/>
         <table class="table table-hover">
             <thead>
@@ -20,6 +19,7 @@
                 <th scope="col">View</th>
                 <th scope="col">Delete</th>
                 <th scope="col">From</th>
+                <th scope="col">To</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Sent on</th>
             </tr>
@@ -30,6 +30,7 @@
                     <td><a th:href="@{/mails/inbox/{id}(id=${mail.getId()})}" class="button btn btn-info btn-sm">View</a></td>
                     <td><a th:href="@{/mails/inbox/delete/{id}(id=${mail.getId()})}" class="button btn btn-danger btn-sm">Delete</a></td>
                     <td th:text="${mail.getSender()}"></td>
+                    <td th:text="${mail.getRecipient().getUsername() + '@abc.bg'}"></td>
                     <td th:text="${mail.getSubject().length() > 50 ? mail.getSubject().substring(0, 50) + '...' : mail.getSubject()}"></td>
                     <td th:text="${#temporals.format(mail.getSentOn(), 'dd-MM-yyyy HH:mm')}"></td>
                 </tr>

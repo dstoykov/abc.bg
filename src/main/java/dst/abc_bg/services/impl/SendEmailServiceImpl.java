@@ -24,7 +24,7 @@ import java.util.Set;
 @Service
 @Transactional
 public class SendEmailServiceImpl implements SendEmailService {
-    public static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
+    private static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
 
     private static final String FROM = "From";
     private static final String SPACE = " ";
@@ -81,14 +81,6 @@ public class SendEmailServiceImpl implements SendEmailService {
         return true;
     }
 
-    private boolean checkIfEmailIsDeleted(SendEmail email) throws CannotAccessMailException {
-        if (email.getDeletedOn() != null) {
-            throw new CannotAccessMailException(CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
-        }
-
-        return true;
-    }
-
     @Override
     public SendEmailServiceModel sendEmail(SendEmailNewBindingModel bindingModel, String sender) throws MessagingException {
         SendEmailServiceModel emailServiceModel = this.mapper.map(bindingModel, SendEmailServiceModel.class);
@@ -118,7 +110,6 @@ public class SendEmailServiceImpl implements SendEmailService {
         SendEmail email = this.emailRepository.getByIdEqualsAndSenderEqualsAndDeletedOnNull(id, this.mapper.map(userServiceModel, User.class));
 
         this.checkIfEmailIsNull(email);
-        this.checkIfEmailIsDeleted(email);
 
         SendEmailViewModel viewModel = this.mapper.map(email, SendEmailViewModel.class);
 

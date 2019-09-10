@@ -10,7 +10,7 @@ public class ReceiveEmail extends BaseEmail {
     private String sender;
 
     @ManyToOne
-    @JoinColumn(name = "recipient_id")
+    @JoinColumn(name = "recipient_id", nullable = false)
     private User recipient;
 
     public ReceiveEmail() {

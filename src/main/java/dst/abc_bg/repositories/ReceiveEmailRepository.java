@@ -2,15 +2,18 @@ package dst.abc_bg.repositories;
 
 import dst.abc_bg.entities.ReceiveEmail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
 @Repository
 public interface ReceiveEmailRepository extends JpaRepository<ReceiveEmail, String> {
-    Set<ReceiveEmail> getAllByDeletedOnNull();
+    @Query("SELECT e FROM ReceiveEmail e WHERE e.recipient.username = ?1 AND e.deletedOn IS null")
+    Set<ReceiveEmail> getAllByRecipientAndDeletedOnNull(String username);
 
-    ReceiveEmail getByIdEqualsAndDeletedOnNull(String id);
+    @Query("SELECT e FROM ReceiveEmail e WHERE e.id = ?1 AND e.recipient.username = ?2 AND e.deletedOn IS NULL")
+    ReceiveEmail getByIdRecipientAndDeletedOnNull(String id, String username);
 
     Set<ReceiveEmail> findAllByIdNotNullOrderBySentOnDesc();
 }

@@ -4,8 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.*;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Properties;
+import java.util.*;
 
 @Component
 public class EmailReceiver {
@@ -19,7 +18,7 @@ public class EmailReceiver {
 
     private static final int ZERO_INDEX = 0;
 
-    public Message[] receiveEmail() throws MessagingException {
+    public Set<Message> receiveEmail() throws MessagingException {
         Properties properties = configProperties();
 
         Session session = configSession(properties);
@@ -29,14 +28,15 @@ public class EmailReceiver {
         Folder folder = store.getFolder(INBOX_FOLDER);
         folder.open(Folder.READ_ONLY);
 
-        Message[] messages = folder.getMessages();
+        Set<Message> messages = getMessagesOrdered(folder);
 
-        Arrays.stream(messages).forEach(m -> {
+        messages.forEach(m -> {
             try {
                 System.out.println(m.getSubject());
                 System.out.println(m.getFrom()[ZERO_INDEX].toString());
                 System.out.println(m.getContent().toString());
                 System.out.println(m.getContentType());
+                System.out.println(m.getSentDate().toString());
                 System.out.println();
             } catch (IOException | MessagingException e) {
                 e.printStackTrace();
@@ -47,6 +47,22 @@ public class EmailReceiver {
         store.close();
 
         return messages;
+    }
+
+    private Set<Message> getMessagesOrdered(Folder folder) throws MessagingException {
+        Message[] messages = folder.getMessages();
+        Set<Message> messagesOrdered = new TreeSet<>((o1, o2) -> {
+            try {
+                return o2.getSentDate().compareTo(o1.getSentDate());
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        });
+
+        Collections.addAll(messagesOrdered, messages);
+
+        return messagesOrdered;
     }
 
     private Store configStore(Session session) throws MessagingException {

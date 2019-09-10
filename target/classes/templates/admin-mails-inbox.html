@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">View</th>
                 <th scope="col">From</th>
+                <th scope="col">To </th>
                 <th scope="col">Subject</th>
                 <th scope="col">Sent on</th>
                 <th scope="col">Status</th>
@@ -29,6 +30,7 @@
                 <tr th:classappend="${mail.getDeletedOn() == null} ? 'table-success' : 'table-danger'">
                     <td><a th:href="@{/admin/mails/inbox/{id}(id=${mail.getId()})}" type="button" class="btn btn-outline-primary btn-sm">View</a></td>
                     <td th:text="${mail.getSender()}"></td>
+                    <td th:text="${mail.getRecipient().getUsername() + '@abc.bg'}"></td>
                     <td th:text="${mail.getSubject().length() > 35 ? mail.getSubject().substring(0, 35) + '...' : mail.getSubject()}"></td>
                     <td th:text="${#temporals.format(mail.getSentOn(), 'dd-MM-yyyy HH:mm')}"></td>
                     <td th:text="${mail.getDeletedOn() == null} ? 'EXISTING' : 'DELETED'"></td>
