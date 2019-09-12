@@ -7,7 +7,7 @@ import javax.validation.constraints.Pattern;
 
 public class SendEmailNewBindingModel {
     private static final String DEFAULT_NOT_EMPTY_MSG = "Field must not be empty. ";
-    private static final String EMAIL_PATTERN_REGEXP = "^[a-z0-9._-]+@[a-z0-9-]+(\\.[a-z]{2,4}){1,3}$";
+    private static final String EMAIL_PATTERN_REGEXP = "^[a-zA-Z0-9._-]+@[a-z0-9-]+(\\.[a-z]{2,4}){1,3}$";
     private static final String EMAIL_PATTERN_MSG = "Invalid email format. ";
     private static final String CONTENT_MAX_LENGTH_MSG = "Message must be less tha 5000 symbols long.";
 

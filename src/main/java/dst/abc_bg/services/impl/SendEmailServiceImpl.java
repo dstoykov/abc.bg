@@ -31,6 +31,9 @@ public class SendEmailServiceImpl implements SendEmailService {
     private static final String AT = "@";
     private static final String DOMAIN = "abc.bg";
 
+    private static final String SENDER_EMAIL_REGEX = "From [a-zA-Z0-9.-_]+@abc\\.bg";
+    private static final String EMPTY_STRING = "";
+
     private final SendEmailRepository emailRepository;
     private final UserService userService;
     private final ModelMapper mapper;
@@ -89,6 +92,8 @@ public class SendEmailServiceImpl implements SendEmailService {
         emailServiceModel.setContent(this.formatEmailContent(emailServiceModel));
 
         this.emailSender.sendEmail(emailServiceModel);
+
+        emailServiceModel.setContent(emailServiceModel.getContent().replaceFirst(SENDER_EMAIL_REGEX, EMPTY_STRING));
 
         this.saveEmail(emailServiceModel);
 

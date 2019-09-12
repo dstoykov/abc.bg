@@ -42,7 +42,7 @@ public class EmailSender {
     }
 
     private Session configSession(Properties properties) {
-        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+        Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(ACCOUNT_NAME, PASSWORD);

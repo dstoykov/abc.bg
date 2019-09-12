@@ -28,6 +28,9 @@ import java.util.regex.Pattern;
 @Transactional
 public class ReceiveEmailServiceImpl implements ReceiveEmailService {
     private static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
+    private static final Integer INITIAL_INDEX = 0;
+    private static final Integer MATCHER_GROUP_ONE = 1;
+    private static final Integer MATCHER_GROUP_TWO = 2;
 
     private static final String EMAIL_IN_BRACKETS_PATTERN = "<(.+)>";
     private static final String RECIPIENT_SUBJECT_PATTERN = "^To ([a-zA-z0-9.-_]+)@abc.bg(.+)$";
@@ -74,13 +77,18 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
 
     private Set<ReceiveEmail> getMessagesAsSetOfReceiveEmails(Pattern senderEmail, Pattern recipientUsername, Set<Message> messages, int newMessagesCount) throws IOException, MessagingException {
         Set<ReceiveEmail> newMessages = new LinkedHashSet<>();
-        int i = 0;
+        int i = INITIAL_INDEX;
         for (Message message : messages) {
             if (i >= newMessagesCount) {
                 break;
             }
+            Matcher recipientUsernameAndSubjectMatcher = this.getRecipientUsernameAndSubjectMatcher(message, recipientUsername);
             ReceiveEmail receiveEmail = new ReceiveEmail();
-            addRecipientToMail(message, receiveEmail, recipientUsername);
+            if (!addRecipientToMail(recipientUsernameAndSubjectMatcher, receiveEmail)) {
+                i++;
+                continue;
+            }
+            addSubjectToMail(recipientUsernameAndSubjectMatcher, receiveEmail);
             addSenderToMail(senderEmail, message, receiveEmail);
             receiveEmail.setContent(message.getContent().toString());
             receiveEmail.setSentOn(new Timestamp(message.getSentDate().getTime()).toLocalDateTime());
@@ -92,29 +100,33 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return newMessages;
     }
 
-    private String addRecipientToMail(Message message, ReceiveEmail receiveEmail, Pattern recipientUsername) throws MessagingException {
+    private Matcher getRecipientUsernameAndSubjectMatcher(Message message, Pattern recipientUsername) throws MessagingException {
         String subjectLine = message.getSubject();
         Matcher matcher = recipientUsername.matcher(subjectLine);
+
+        return matcher;
+    }
+
+    private boolean addRecipientToMail(Matcher matcher, ReceiveEmail receiveEmail) {
         if (matcher.find()) {
             UserServiceModel recipient = this.userService.getUserServiceModelByUsername(matcher.group(1));
             receiveEmail.setRecipient(this.mapper.map(recipient, User.class));
-            addSubjectToMail(receiveEmail, matcher);
 
-            return recipient.getUsername();
+            return true;
         }
-        return null;
+        return false;
     }
 
-    private String addSubjectToMail(ReceiveEmail receiveEmail, Matcher matcher) {
-        receiveEmail.setSubject(matcher.group(2));
+    private String addSubjectToMail(Matcher matcher, ReceiveEmail receiveEmail) {
+        receiveEmail.setSubject(matcher.group(MATCHER_GROUP_TWO));
         return receiveEmail.getSubject();
     }
 
     private boolean addSenderToMail(Pattern senderEmail, Message message, ReceiveEmail receiveEmail) throws MessagingException {
-        String sender = message.getFrom()[0].toString();
+        String sender = message.getFrom()[INITIAL_INDEX].toString();
         Matcher matcher = senderEmail.matcher(sender);
         if (matcher.find()) {
-            receiveEmail.setSender(matcher.group(1));
+            receiveEmail.setSender(matcher.group(MATCHER_GROUP_ONE));
             return true;
         }
         return false;
