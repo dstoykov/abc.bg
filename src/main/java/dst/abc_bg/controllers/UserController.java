@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@Valid @ModelAttribute(name = "registerInput") UserRegisterBindingModel userBindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes) {
+    public ModelAndView register(@Valid @ModelAttribute(name = "registerInput") UserRegisterBindingModel userBindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes) throws  UserAlreadyExistsException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerInput", bindingResult);
             redirectAttributes.addFlashAttribute("registerInput", userBindingModel);
@@ -74,10 +74,8 @@ public class UserController {
                 redirectAttributes.addFlashAttribute("passwordError", "error");
                 redirectAttributes.addFlashAttribute("registerInput", userBindingModel);
                 modelAndView.setViewName("redirect:register");
-            } catch (UserAlreadyExistsException e) {
-                redirectAttributes.addFlashAttribute("userExistsError", "error");
-                modelAndView.setViewName("redirect:register");
             }
+
         }
 
         return modelAndView;

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/mails")
@@ -42,20 +43,15 @@ public class EmailController {
     }
 
     @PostMapping("/new")
-    public ModelAndView newMessage(@Valid @ModelAttribute(name = "mailInput") SendEmailNewBindingModel bindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes, Principal principal) {
+    public ModelAndView newMessage(@Valid @ModelAttribute(name = "mailInput") SendEmailNewBindingModel bindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes, Principal principal) throws MessagingException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mailInput", bindingResult);
             redirectAttributes.addFlashAttribute("mailInput", bindingModel);
             modelAndView.setViewName("redirect:new");
         } else {
-            try {
-                this.sendEmailService.sendEmail(bindingModel, principal.getName());
-                modelAndView.setViewName("redirect:/");
-                redirectAttributes.addFlashAttribute("success", "success");
-            } catch (MessagingException e) {
-                e.printStackTrace();
-                modelAndView.setViewName("redirect:../errors/error");
-            }
+            this.sendEmailService.sendEmail(bindingModel, principal.getName());
+            modelAndView.setViewName("redirect:/");
+            redirectAttributes.addFlashAttribute("success", "success");
         }
 
         return modelAndView;
@@ -99,12 +95,13 @@ public class EmailController {
     }
 
     @GetMapping("/inbox")
-    public ModelAndView inboxMails(ModelAndView modelAndView, Principal principal) throws Exception {
-        this.receiveEmailService.receiveEmails();
+    public ModelAndView inboxMails(ModelAndView modelAndView, Principal principal) {
+        Set<ReceiveEmailViewModel> receiveEmailViewModels = this.receiveEmailService.allNonDeletedReceivedMailsForUser(principal.getName());
 
         modelAndView.setViewName("mails-inbox");
         modelAndView.addObject("title", "Inbox");
-        modelAndView.addObject("mails", this.receiveEmailService.allNonDeletedReceivedMailsForUser(principal.getName()));
+        modelAndView.addObject("mails", receiveEmailViewModels);
+        modelAndView.addObject("areNew", this.receiveEmailService.areNew(receiveEmailViewModels));
 
         return modelAndView;
     }

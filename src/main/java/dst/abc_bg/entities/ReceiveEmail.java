@@ -13,6 +13,9 @@ public class ReceiveEmail extends BaseEmail {
     @JoinColumn(name = "recipient_id", nullable = false)
     private User recipient;
 
+    @Column(name = "is_new", nullable = false)
+    private Boolean isNew;
+
     public ReceiveEmail() {
         super();
     }
@@ -31,5 +34,13 @@ public class ReceiveEmail extends BaseEmail {
 
     public void setRecipient(User recipient) {
         this.recipient = recipient;
+    }
+
+    public Boolean getNew() {
+        return this.isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
     }
 }

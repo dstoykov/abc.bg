@@ -16,6 +16,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
+                <th scope="col" th:if="${areNew}"></th>
                 <th scope="col">View</th>
                 <th scope="col">Delete</th>
                 <th scope="col">From</th>
@@ -27,6 +28,8 @@
             <tbody>
             <th:block th:each="mail : ${mails}">
                 <tr class="table-success">
+                    <td th:if="${mail.getNew()}"><span class="badge badge-primary">New</span></td>
+                    <td th:if="${areNew && !mail.getNew()}"></td>
                     <td><a th:href="@{/mails/inbox/{id}(id=${mail.getId()})}" class="button btn btn-info btn-sm">View</a></td>
                     <td><a th:href="@{/mails/inbox/delete/{id}(id=${mail.getId()})}" class="button btn btn-danger btn-sm">Delete</a></td>
                     <td th:text="${mail.getSender()}"></td>

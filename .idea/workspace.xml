@@ -69,7 +69,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553723654632" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../abc.bg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/dst/abc_bg/config" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -82,24 +82,24 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dst.courseproject.controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\java\dst\abc_bg\config" />
+      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\static\styles" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\java\dst\abc_bg\exceptions" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\fragments" />
+      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dst.abc_bg.config" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Dimitar\Desktop\New folder (4)\abc.bg\src\main\resources\templates" />
       <recent name="D:\Dimitar\Desktop\New folder (4)\abc.bg\src\main\resources\static" />
       <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\templates" />
       <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\error" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="dst.courseproject.controllers" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dst.abc_bg.config" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Dimitar\Desktop\abc.bg\src\main\resources\static\styles" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\java\dst\abc_bg\exceptions" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates\fragments" />
-      <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\static" />
       <recent name="D:\Dimitar\Desktop\Java-Web-Course-Project\src\main\resources\templates" />
     </key>
   </component>
@@ -261,12 +261,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d8808a2f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@bc50fec8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@d8808a2f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@fc2f44d0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@bc50fec8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@df38956d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -412,6 +412,7 @@
       <workItem from="1568031455783" duration="2481000" />
       <workItem from="1568107378079" duration="17050000" />
       <workItem from="1568280110652" duration="5695000" />
+      <workItem from="1568362901643" duration="14372000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project, login, logout and register functionality added.">
       <created>1567078149843</created>

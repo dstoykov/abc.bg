@@ -3,6 +3,7 @@ package dst.abc_bg.services.impl;
 import dst.abc_bg.entities.ReceiveEmail;
 import dst.abc_bg.entities.User;
 import dst.abc_bg.exceptions.CannotAccessMailException;
+import dst.abc_bg.models.service.ReceiveEmailServiceModel;
 import dst.abc_bg.models.service.UserServiceModel;
 import dst.abc_bg.models.view.ReceiveEmailViewModel;
 import dst.abc_bg.repositories.ReceiveEmailRepository;
@@ -57,8 +58,22 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return viewModels;
     }
 
-    private boolean saveEmail(Set<ReceiveEmail> newMessages) {
+    private Set<ReceiveEmailServiceModel> mapListOfEmailToListOfServiceModel(Set<ReceiveEmail> emails) {
+        Set<ReceiveEmailServiceModel> serviceModels = new LinkedHashSet<>();
+        for (ReceiveEmail email : emails) {
+            serviceModels.add(this.mapper.map(email, ReceiveEmailServiceModel.class));
+        }
+
+        return serviceModels;
+    }
+
+    private boolean saveEmails(Set<ReceiveEmail> newMessages) {
         this.emailRepository.saveAll(newMessages);
+        return true;
+    }
+
+    private boolean saveEmail(ReceiveEmail receiveEmail) {
+        this.emailRepository.save(receiveEmail);
         return true;
     }
 
@@ -92,6 +107,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
             addSenderToMail(senderEmail, message, receiveEmail);
             receiveEmail.setContent(message.getContent().toString());
             receiveEmail.setSentOn(new Timestamp(message.getSentDate().getTime()).toLocalDateTime());
+            receiveEmail.setNew(true);
 
             newMessages.add(receiveEmail);
             i++;
@@ -132,17 +148,24 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return false;
     }
 
+    private ReceiveEmail setEmailAsOpened(ReceiveEmail receiveEmail) {
+        receiveEmail.setNew(false);
+        this.saveEmail(receiveEmail);
+
+        return receiveEmail;
+    }
+
     @Override
-    public Set<ReceiveEmail> receiveEmails() throws Exception {
+    public Set<ReceiveEmailServiceModel> receiveEmails() throws MessagingException, IOException {
         Pattern senderEmail = Pattern.compile(EMAIL_IN_BRACKETS_PATTERN);
         Pattern recipientUsername = Pattern.compile(RECIPIENT_SUBJECT_PATTERN);
         Set<Message> messages = this.emailReceiver.receiveEmail();
         int newMessagesCount = getNewMessagesCount(messages.size());
 
         Set<ReceiveEmail> newMessages = getMessagesAsSetOfReceiveEmails(senderEmail, recipientUsername, messages, newMessagesCount);
-        saveEmail(newMessages);
+        saveEmails(newMessages);
 
-        return newMessages;
+        return this.mapListOfEmailToListOfServiceModel(newMessages);
     }
 
     @Override
@@ -159,11 +182,13 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         checkIfEmailIsNull(receiveEmail);
         ReceiveEmailViewModel viewModel = this.mapper.map(receiveEmail, ReceiveEmailViewModel.class);
 
+        this.setEmailAsOpened(receiveEmail);
+
         return viewModel;
     }
 
     @Override
-    public boolean deleteMail(String id, String name) throws CannotAccessMailException {
+    public Boolean deleteMail(String id, String name) throws CannotAccessMailException {
         ReceiveEmail email = this.emailRepository.getByIdRecipientAndDeletedOnNull(id, name);
         checkIfEmailIsNull(email);
         email.setDeletedOn(LocalDateTime.now());
@@ -187,5 +212,16 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         ReceiveEmailViewModel viewModel = this.mapper.map(one, ReceiveEmailViewModel.class);
 
         return viewModel;
+    }
+
+    @Override
+    public Boolean areNew(Set<ReceiveEmailViewModel> receiveEmails) {
+        for (ReceiveEmailViewModel receiveEmail : receiveEmails) {
+            if (receiveEmail.getNew()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

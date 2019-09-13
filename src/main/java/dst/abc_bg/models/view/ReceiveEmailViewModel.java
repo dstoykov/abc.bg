@@ -7,6 +7,8 @@ public class ReceiveEmailViewModel extends BaseEmailModel {
 
     private UserViewModel recipient;
 
+    private Boolean isNew;
+
     public ReceiveEmailViewModel() {
         super();
     }
@@ -25,5 +27,13 @@ public class ReceiveEmailViewModel extends BaseEmailModel {
 
     public void setRecipient(UserViewModel recipient) {
         this.recipient = recipient;
+    }
+
+    public Boolean getNew() {
+        return this.isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
     }
 }

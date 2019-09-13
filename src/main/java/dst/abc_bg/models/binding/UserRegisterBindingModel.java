@@ -6,8 +6,8 @@ import javax.validation.constraints.Size;
 
 public class UserRegisterBindingModel {
     private static final String DEFAULT_NOT_EMPTY_MSG = "Field name must not be empty. ";
-    private static final String EMAIL_PATTERN_REGEXP = "^[a-zA-Z][a-zA-Z0-9-_.]+[a-zA-Z0-9]$";
-    private static final String EMAIL_PATTERN_MSG = "Invalid email format. ";
+    private static final String USERNAME_PATTERN_REGEXP = "^[a-zA-Z][a-zA-Z0-9-_.]+[a-zA-Z0-9]$";
+    private static final String USERNAME_PATTERN_MSG = "Invalid username format. ";
     private static final String NAME_PATTERN_MSG = "Incorrect name format. ";
     private static final String NAME_PATTERN_REGEXP = "^[a-zA-Z]+$";
     private static final int PASSWORD_SIZE_MIN = 8;
@@ -15,7 +15,7 @@ public class UserRegisterBindingModel {
     private static final String PASSWORD_SIZE_MSG = "Password length must be between 8 and 20 symbols. ";
 
     @NotEmpty(message = DEFAULT_NOT_EMPTY_MSG)
-    @Pattern(regexp = EMAIL_PATTERN_REGEXP, message = EMAIL_PATTERN_MSG)
+    @Pattern(regexp = USERNAME_PATTERN_REGEXP, message = USERNAME_PATTERN_MSG)
     private String username;
 
     @NotEmpty(message = DEFAULT_NOT_EMPTY_MSG)

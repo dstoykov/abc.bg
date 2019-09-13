@@ -17,9 +17,9 @@
         <div class="col-md-9">
             <p class="text-primary" th:text="${'From:   ' + mail.getSender()}"></p>
         </div>
-<!--        <div class="col-md-9">-->
-<!--            <p class="text-primary" th:text="${'To: ' + mail.getSender().getUsername() + '@abc.bg'}"></p>-->
-<!--        </div>-->
+        <div class="col-md-9">
+            <p class="text-primary" th:text="${'To: ' + mail.getRecipient().getUsername() + '@abc.bg'}"></p>
+        </div>
         <hr/>
         <div class="container">
             <p class="text-info" th:text="${mail.getContent()}"></p>
