@@ -27,7 +27,8 @@
                 <a type="button" class="btn btn-outline-primary btn-xl btn-centered" href="/mails/sent">Sent E-mails</a>
             </div>
             <div class="col-lg-4">
-                <a type="button" class="btn btn-outline-primary btn-xl btn-centered" href="/mails/inbox">Inbox</a>
+                <a th:if="${newMails > 0}" type="button" class="btn btn-outline-primary btn-xl btn-centered" href="/mails/inbox" th:text="'Inbox (' + ${newMails} + ')'"></a>
+                <a th:if="${newMails <= 0}" type="button" class="btn btn-outline-primary btn-xl btn-centered" href="/mails/inbox">Inbox</a>
             </div>
         </div>
     </div>

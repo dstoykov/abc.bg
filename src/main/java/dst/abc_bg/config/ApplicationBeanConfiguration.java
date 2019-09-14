@@ -1,6 +1,6 @@
 package dst.abc_bg.config;
 
-import dst.abc_bg.util.EmailSender;
+import dst.abc_bg.areas.email.send.util.EmailSender;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

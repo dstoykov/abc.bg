@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <th:block th:each="mail : ${mails}">
-                <tr class="table-success">
+                <tr class="table-info">
                     <td><a th:href="@{/mails/sent/{id}(id=${mail.getId()})}" type="button" class="btn btn-info btn-sm">View</a></td>
                     <td><a th:href="@{/mails/sent/delete/{id}(id=${mail.getId()})}" type="button" class="btn btn-danger btn-sm">Delete</a></td>
                     <td th:text="${mail.getRecipient()}"></td>

@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <th:block th:each="mail : ${mails}">
-                <tr th:classappend="${mail.getDeletedOn() == null} ? 'table-success' : 'table-danger'">
+                <tr th:classappend="${mail.getDeletedOn() == null} ? 'table-info' : 'table-danger'">
                     <td><a th:href="@{/admin/mails/sent/{id}(id=${mail.getId()})}" type="button" class="btn btn-outline-primary btn-sm">View</a></td>
                     <td th:text="${mail.getSender().getUsername() + '@abc.bg'}"></td>
                     <td th:text="${mail.getRecipient()}"></td>
