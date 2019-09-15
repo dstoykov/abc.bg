@@ -4,6 +4,8 @@ import dst.abc_bg.areas.role.entities.Role;
 import dst.abc_bg.areas.user.entities.User;
 import dst.abc_bg.areas.user.exceptions.PasswordsMismatchException;
 import dst.abc_bg.areas.user.exceptions.UserAlreadyExistsException;
+import dst.abc_bg.areas.user.models.binding.UserEditDataBindingModel;
+import dst.abc_bg.areas.user.models.binding.UserEditPasswordBindingModel;
 import dst.abc_bg.areas.user.models.binding.UserRegisterBindingModel;
 import dst.abc_bg.areas.user.models.service.UserServiceModel;
 import dst.abc_bg.areas.user.repositories.UserRepository;
@@ -56,7 +58,7 @@ public class UserServiceImpl implements UserService {
         this.roleService.save(role);
     }
 
-    private void checkPasswords(UserRegisterBindingModel bindingModel, User user) throws PasswordsMismatchException {
+    private void checkAndSavePasswords(UserRegisterBindingModel bindingModel, User user) throws PasswordsMismatchException {
         if (comparePasswords(bindingModel.getPassword(), bindingModel.getConfirmPassword())) {
             user.setPassword(this.encoder.encode(bindingModel.getPassword()));
         }
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceModel register(UserRegisterBindingModel bindingModel) throws PasswordsMismatchException, UserAlreadyExistsException {
         this.checkUsername(bindingModel);
         User user = this.mapper.map(bindingModel, User.class);
-        this.checkPasswords(bindingModel, user);
+        this.checkAndSavePasswords(bindingModel, user);
 
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
@@ -92,5 +94,27 @@ public class UserServiceImpl implements UserService {
                 .map(this.userRepository.findUserByUsernameAndDeletedOnNull(username), UserServiceModel.class);
 
         return serviceModel;
+    }
+
+    @Override
+    public UserServiceModel editUserDataByUsername(UserEditDataBindingModel userEditDataBindingModel, String username) {
+        User user = this.userRepository.findUserByUsernameAndDeletedOnNull(username);
+        user.setFirstName(userEditDataBindingModel.getFirstName());
+        user.setLastName(userEditDataBindingModel.getLastName());
+
+        this.userRepository.save(user);
+
+        return this.mapper.map(user, UserServiceModel.class);
+    }
+
+    @Override
+    public UserServiceModel editUserPasswordByUsername(UserEditPasswordBindingModel userEditPasswordBindingModel, String username) throws PasswordsMismatchException {
+        User user = this.userRepository.findUserByUsernameAndDeletedOnNull(username);
+        this.comparePasswords(userEditPasswordBindingModel.getPassword(), userEditPasswordBindingModel.getConfirmPassword());
+        user.setPassword(this.encoder.encode(userEditPasswordBindingModel.getPassword()));
+
+        this.userRepository.save(user);
+
+        return this.mapper.map(user, UserServiceModel.class);
     }
 }

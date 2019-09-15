@@ -73,3 +73,7 @@ div.btn-parent {
 .btn-centered {
     margin-top: 30%;
 }
+
+tr[bold="bold"] {
+    font-weight: bold;
+}

@@ -30,9 +30,9 @@
         <option value="JavaScript File" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -262,12 +262,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@77e3b2a0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@75d3cd51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@77e3b2a0" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@4af6dc5f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@75d3cd51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ac144d38" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -415,6 +415,8 @@
       <workItem from="1568280110652" duration="5695000" />
       <workItem from="1568362901643" duration="14372000" />
       <workItem from="1568467357812" duration="6374000" />
+      <workItem from="1568535519071" duration="3994000" />
+      <workItem from="1568550681200" duration="14008000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project, login, logout and register functionality added.">
       <created>1567078149843</created>
@@ -469,11 +471,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/dst/courseproject/entities/UserTests.java</url>
           <line>188</line>
           <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/dst/abc_bg/areas/email/receive/services/impl/ReceiveEmailServiceImpl.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,22 +49,6 @@ public class EmailReceiver {
         return messages;
     }
 
-    private Set<Message> getMessagesOrdered(Folder folder) throws MessagingException {
-        Message[] messages = folder.getMessages();
-        Set<Message> messagesOrdered = new TreeSet<>((o1, o2) -> {
-            try {
-                return o2.getSentDate().compareTo(o1.getSentDate());
-            } catch (MessagingException e) {
-                e.printStackTrace();
-                return 0;
-            }
-        });
-
-        Collections.addAll(messagesOrdered, messages);
-
-        return messagesOrdered;
-    }
-
     private Store configStore(Session session) throws MessagingException {
         Store store = session.getStore(POP3_SECURED_PROTOCOL);
         store.connect(HOST, ACCOUNT_NAME, PASSWORD);
@@ -82,5 +66,21 @@ public class EmailReceiver {
         properties.put("mail.pop3.port", PORT);
         properties.put("mail.pop3.starttls.enable", TRUE);
         return properties;
+    }
+
+    private Set<Message> getMessagesOrdered(Folder folder) throws MessagingException {
+        Message[] messages = folder.getMessages();
+        Set<Message> messagesOrdered = new TreeSet<>((o1, o2) -> {
+            try {
+                return o2.getSentDate().compareTo(o1.getSentDate());
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        });
+
+        Collections.addAll(messagesOrdered, messages);
+
+        return messagesOrdered;
     }
 }
