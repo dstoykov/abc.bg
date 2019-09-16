@@ -21,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-md-5">
-                <form class="centered" th:action="@{/users/profile/edit-data}" th:method="POST" th:object="${userDataInput}">
+                <form class="centered" th:action="@{/admin/users/{username}/edit-data(username=${username})}" th:method="POST" th:object="${userDataInput}">
                     <fieldset>
                         <legend>Edit Profile Data</legend>
                         <div class="form-group row">
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-5">
-                <form class="centered" th:action="@{/users/profile/edit-password}" th:method="POST" th:object="${userPasswordInput}">
+                <form class="centered" th:action="@{/admin/users/{username}/edit-password(username=${username})}" th:method="POST" th:object="${userPasswordInput}">
                     <fieldset>
                         <legend>Edit Password</legend>
                         <div class="form-group row" th:classappend="${#fields.hasErrors('password')} ? 'has-danger'">
@@ -74,6 +74,10 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="centered">
+            <a th:href="@{/admin/users/{username}/ban(username=${username})}" th:if="${deletedOn == null}" type="button" class="btn btn-outline-danger mr-2 centered">Ban</a>
+            <a th:href="@{/admin/users/{username}/restore(username=${username})}" th:if="${deletedOn != null}" type="button" class="btn btn-outline-warning mr-2 centered">Restore</a>
         </div>
     </div>
     <hr class="hr-hidden"/>

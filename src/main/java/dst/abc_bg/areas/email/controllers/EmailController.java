@@ -6,6 +6,7 @@ import dst.abc_bg.areas.email.receive.models.view.ReceiveEmailViewModel;
 import dst.abc_bg.areas.email.send.models.view.SendEmailViewModel;
 import dst.abc_bg.areas.email.receive.services.ReceiveEmailService;
 import dst.abc_bg.areas.email.send.services.SendEmailService;
+import dst.abc_bg.areas.user.exceptions.UserAlreadyBannedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +44,7 @@ public class EmailController {
     }
 
     @PostMapping("/new")
-    public ModelAndView newMessage(@Valid @ModelAttribute(name = "mailInput") SendEmailNewBindingModel bindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes, Principal principal) throws MessagingException {
+    public ModelAndView newMessage(@Valid @ModelAttribute(name = "mailInput") SendEmailNewBindingModel bindingModel, BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes, Principal principal) throws MessagingException, UserAlreadyBannedException {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mailInput", bindingResult);
             redirectAttributes.addFlashAttribute("mailInput", bindingModel);
@@ -58,7 +59,7 @@ public class EmailController {
     }
 
     @GetMapping("/sent")
-    public ModelAndView sentMails(ModelAndView modelAndView, Principal principal) {
+    public ModelAndView sentMails(ModelAndView modelAndView, Principal principal) throws UserAlreadyBannedException {
         modelAndView.setViewName("mails-sent");
         modelAndView.addObject("title", "Sent mails");
         modelAndView.addObject("mails", this.sendEmailService.allNonDeletedSentMailsForUser(principal.getName()));
@@ -67,7 +68,7 @@ public class EmailController {
     }
 
     @GetMapping("/sent/{id}")
-    public ModelAndView sentMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+    public ModelAndView sentMailDetails(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException, UserAlreadyBannedException {
         SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
         modelAndView.setViewName("mail-sent-details");
         modelAndView.addObject("title", "Details");
@@ -77,7 +78,7 @@ public class EmailController {
     }
 
     @GetMapping("/sent/delete/{id}")
-    public ModelAndView deleteSentMail(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+    public ModelAndView deleteSentMail(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException, UserAlreadyBannedException {
         SendEmailViewModel viewModel = this.sendEmailService.getNonDeletedSendEmailViewModelById(id, principal.getName());
         modelAndView.setViewName("mail-sent-delete");
         modelAndView.addObject("title", "Delete E-mail");
@@ -87,7 +88,7 @@ public class EmailController {
     }
 
     @PostMapping("/sent/delete/{id}")
-    public ModelAndView deleteSentMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException {
+    public ModelAndView deleteSentMailConfirm(@PathVariable(name = "id") String id, ModelAndView modelAndView, Principal principal) throws CannotAccessMailException, UserAlreadyBannedException {
         this.sendEmailService.deleteMail(id, principal.getName());
         modelAndView.setViewName("redirect:/mails/sent");
 

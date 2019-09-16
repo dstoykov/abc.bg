@@ -2,7 +2,7 @@ function showNoty(type, text) {
     new Noty({
         text: text,
         type: type,
-        theme: 'mint',
+        theme: 'relax',
         timeout: 4000,
         layout: 'topRight'
     }).show();

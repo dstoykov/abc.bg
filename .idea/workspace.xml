@@ -262,12 +262,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@75d3cd51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1cb28d3a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@75d3cd51" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ac144d38" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1cb28d3a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@890962a9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -417,6 +417,10 @@
       <workItem from="1568467357812" duration="6374000" />
       <workItem from="1568535519071" duration="3994000" />
       <workItem from="1568550681200" duration="14008000" />
+      <workItem from="1568624599646" duration="16772000" />
+      <workItem from="1568651041322" duration="652000" />
+      <workItem from="1568651994774" duration="590000" />
+      <workItem from="1568652684009" duration="36000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project, login, logout and register functionality added.">
       <created>1567078149843</created>

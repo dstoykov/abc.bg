@@ -5,6 +5,7 @@ import dst.abc_bg.areas.user.entities.User;
 import dst.abc_bg.areas.email.exceptions.CannotAccessMailException;
 import dst.abc_bg.areas.email.send.models.binding.SendEmailNewBindingModel;
 import dst.abc_bg.areas.email.send.models.service.SendEmailServiceModel;
+import dst.abc_bg.areas.user.exceptions.UserAlreadyBannedException;
 import dst.abc_bg.areas.user.models.service.UserServiceModel;
 import dst.abc_bg.areas.email.send.models.view.SendEmailViewModel;
 import dst.abc_bg.areas.email.send.repositories.SendEmailRepository;
@@ -85,9 +86,9 @@ public class SendEmailServiceImpl implements SendEmailService {
     }
 
     @Override
-    public SendEmailServiceModel sendEmail(SendEmailNewBindingModel bindingModel, String sender) throws MessagingException {
+    public SendEmailServiceModel sendEmail(SendEmailNewBindingModel bindingModel, String sender) throws MessagingException, UserAlreadyBannedException {
         SendEmailServiceModel emailServiceModel = this.mapper.map(bindingModel, SendEmailServiceModel.class);
-        emailServiceModel.setSender(userService.getUserServiceModelByUsername(sender));
+        emailServiceModel.setSender(userService.getNonDeletedUserServiceModelByUsername(sender));
         emailServiceModel.setSentOn(LocalDateTime.now());
         emailServiceModel.setContent(this.formatEmailContent(emailServiceModel));
 
@@ -101,8 +102,8 @@ public class SendEmailServiceImpl implements SendEmailService {
     }
 
     @Override
-    public Set<SendEmailViewModel> allNonDeletedSentMailsForUser(String name) {
-        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
+    public Set<SendEmailViewModel> allNonDeletedSentMailsForUser(String name) throws UserAlreadyBannedException {
+        UserServiceModel userServiceModel = this.userService.getNonDeletedUserServiceModelByUsername(name);
         Set<SendEmail> emails = this.emailRepository.getAllBySenderAndDeletedOnNullOrderBySentOnDesc(this.mapper.map(userServiceModel, User.class));
 
         Set<SendEmailViewModel> viewModels = this.mapListOfEmailToListOfViewModel(emails);
@@ -110,8 +111,8 @@ public class SendEmailServiceImpl implements SendEmailService {
     }
 
     @Override
-    public SendEmailViewModel getNonDeletedSendEmailViewModelById(String id, String name) throws CannotAccessMailException {
-        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
+    public SendEmailViewModel getNonDeletedSendEmailViewModelById(String id, String name) throws CannotAccessMailException, UserAlreadyBannedException {
+        UserServiceModel userServiceModel = this.userService.getNonDeletedUserServiceModelByUsername(name);
         SendEmail email = this.emailRepository.getByIdEqualsAndSenderEqualsAndDeletedOnNull(id, this.mapper.map(userServiceModel, User.class));
 
         this.checkIfEmailIsNull(email);
@@ -122,8 +123,8 @@ public class SendEmailServiceImpl implements SendEmailService {
     }
 
     @Override
-    public boolean deleteMail(String id, String name) throws CannotAccessMailException {
-        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(name);
+    public boolean deleteMail(String id, String name) throws CannotAccessMailException, UserAlreadyBannedException {
+        UserServiceModel userServiceModel = this.userService.getNonDeletedUserServiceModelByUsername(name);
         SendEmail email = this.emailRepository.getByIdEqualsAndSenderEqualsAndDeletedOnNull(id, this.mapper.map(userServiceModel, User.class));
 
         this.checkIfEmailIsNull(email);

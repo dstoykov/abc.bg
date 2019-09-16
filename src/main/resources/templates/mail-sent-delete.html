@@ -19,7 +19,7 @@
 </header>
 <main>
     <div class="container">
-        <form class="form-centered" th:action="@{/mails/sent/delete/{id}(id=${mail.getId()})}" th:method="POST" th:object="${mail}">
+        <form class="centered" th:action="@{/mails/sent/delete/{id}(id=${mail.getId()})}" th:method="POST" th:object="${mail}">
             <fieldset>
                 <legend>Delete mail</legend>
                 <div class="form-group row mt-4">

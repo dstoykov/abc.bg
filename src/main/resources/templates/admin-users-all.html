@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <script th:src="@{/static/scripts/showNoty.js}"></script>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <div th:if="${banned}">
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                showNoty('info', 'User banned');
+                /*]]>*/
+            </script>
+        </div>
+        <div th:if="${restored}">
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                showNoty('info', 'User restored');
+                /*]]>*/
+            </script>
+        </div>
+        <h2 class="text-center">All Users</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="userModel, iter : ${userModels}">
+                <tr th:classappend="${userModel.getDeletedOn()==null} ? 'table-active' : 'table-warning'">
+                    <th scope="row" th:text="${iter.index + 1}"></th>
+                    <td th:text="${userModel.getUsername()}"></td>
+                    <td th:text="${userModel.getFirstName()}"></td>
+                    <td th:text="${userModel.getLastName()}"></td>
+                    <td><a class="btn btn-sm btn-outline-info" th:href="@{/admin/users/{username}(username=${userModel.getUsername()})}">Profile</a></td>
+                    <td th:if="${userModel.getDeletedOn()==null}"><a class="btn btn-sm btn-outline-danger"
+                            th:href="@{/admin/users/{username}/ban(username=${userModel.getUsername()})}">Ban</a></td>
+                    <td th:if="${userModel.getDeletedOn()!=null}"><a class="btn btn-sm btn-outline-warning"
+                            th:href="@{/admin/users/{username}/restore(username=${userModel.getUsername()})}">Restore</a></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <hr class="hr-hidden"/>
+</main>
+<footer class="footer mt-5"><!--class="footer-sticky"-->
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

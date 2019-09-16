@@ -12,7 +12,7 @@
 </header>
 <main>
     <div class="container">
-        <form class="form-centered" th:action="@{'/users/register'}" th:method="POST" th:object="${registerInput}">
+        <form class="centered" th:action="@{'/users/register'}" th:method="POST" th:object="${registerInput}">
             <div th:if="${#fields.hasAnyErrors()}">
                 <script th:inline="javascript">
                     /*<![CDATA[*/

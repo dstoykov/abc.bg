@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main>
+    <div class="container">
+        <form class="centered" th:action="@{/admin/users/{username}/ban(username=${user.username})}" th:method="POST">
+            <fieldset>
+                <legend th:text="'Ban ' + ${username}"></legend>
+                <div class="form-group row mt-4">
+                    <label for="username">Username</label>
+                    <input disabled="disabled" class="form-control" th:value="${user.getUsername()}" id="username"
+                           aria-describedby="username" type="text" name="username">
+                </div>
+                <div class="form-group row">
+                    <label for="firstName">First name</label>
+                    <input disabled="disabled" class="form-control"
+                           th:value="${user.getFirstName()}"
+                           id="firstName" type="text" name="firstName">
+                </div>
+                <div class="form-group row">
+                    <label for="lastName">Last name</label>
+                    <input disabled="disabled" class="form-control"
+                           th:value="${user.getFirstName()}"
+                           id="lastName" type="text" name="lastName">
+                </div>
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-danger mr-2">Ban</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <hr class="hr-hidden"/>
+</main>
+<footer class="footer mt-5"><!--class="footer-sticky"-->
+    <th:block th:replace="fragments/footer"></th:block>
+</footer>
+</body>
+</html>

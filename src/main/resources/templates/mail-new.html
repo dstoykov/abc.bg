@@ -12,7 +12,7 @@
 </header>
 <main>
     <div class="container">
-        <form class="form-centered" th:action="@{'/mails/new'}" th:method="POST" th:object="${mailInput}">
+        <form class="centered" th:action="@{'/mails/new'}" th:method="POST" th:object="${mailInput}">
             <div th:if="${#fields.hasAnyErrors()}">
                 <script th:inline="javascript">
                     /*<![CDATA[*/

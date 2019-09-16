@@ -4,6 +4,7 @@ import dst.abc_bg.areas.email.receive.entities.ReceiveEmail;
 import dst.abc_bg.areas.user.entities.User;
 import dst.abc_bg.areas.email.exceptions.CannotAccessMailException;
 import dst.abc_bg.areas.email.receive.models.service.ReceiveEmailServiceModel;
+import dst.abc_bg.areas.user.exceptions.UserAlreadyBannedException;
 import dst.abc_bg.areas.user.models.service.UserServiceModel;
 import dst.abc_bg.areas.email.receive.models.view.ReceiveEmailViewModel;
 import dst.abc_bg.areas.email.receive.repositories.ReceiveEmailRepository;
@@ -90,7 +91,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return true;
     }
 
-    private Set<ReceiveEmail> getMessagesAsSetOfReceiveEmails(Pattern senderEmail, Pattern recipientUsername, Set<Message> messages, int newMessagesCount) throws IOException, MessagingException {
+    private Set<ReceiveEmail> getMessagesAsSetOfReceiveEmails(Pattern senderEmail, Pattern recipientUsername, Set<Message> messages, int newMessagesCount) throws IOException, MessagingException, UserAlreadyBannedException {
         Set<ReceiveEmail> newMessages = new LinkedHashSet<>();
         int i = INITIAL_INDEX;
         for (Message message : messages) {
@@ -123,9 +124,9 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
         return matcher;
     }
 
-    private boolean addRecipientToMail(Matcher matcher, ReceiveEmail receiveEmail) {
+    private boolean addRecipientToMail(Matcher matcher, ReceiveEmail receiveEmail) throws UserAlreadyBannedException {
         if (matcher.find()) {
-            UserServiceModel recipient = this.userService.getUserServiceModelByUsername(matcher.group(1));
+            UserServiceModel recipient = this.userService.getNonDeletedUserServiceModelByUsername(matcher.group(1));
             receiveEmail.setRecipient(this.mapper.map(recipient, User.class));
 
             return true;
@@ -156,7 +157,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
     }
 
     @Override
-    public Set<ReceiveEmailServiceModel> receiveEmails() throws MessagingException, IOException {
+    public Set<ReceiveEmailServiceModel> receiveEmails() throws MessagingException, IOException, UserAlreadyBannedException {
         Pattern senderEmail = Pattern.compile(EMAIL_IN_BRACKETS_PATTERN);
         Pattern recipientUsername = Pattern.compile(RECIPIENT_SUBJECT_PATTERN);
         Set<Message> messages = this.emailReceiver.receiveEmail();

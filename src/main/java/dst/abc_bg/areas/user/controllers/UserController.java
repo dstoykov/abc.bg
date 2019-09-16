@@ -1,6 +1,7 @@
 package dst.abc_bg.areas.user.controllers;
 
 import dst.abc_bg.areas.user.exceptions.PasswordsMismatchException;
+import dst.abc_bg.areas.user.exceptions.UserAlreadyBannedException;
 import dst.abc_bg.areas.user.exceptions.UserAlreadyExistsException;
 import dst.abc_bg.areas.user.models.binding.UserEditDataBindingModel;
 import dst.abc_bg.areas.user.models.binding.UserEditPasswordBindingModel;
@@ -24,10 +25,12 @@ import java.security.Principal;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final ModelMapper mapper;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ModelMapper mapper) {
         this.userService = userService;
+        this.mapper = mapper;
     }
 
     @GetMapping("/login")
@@ -82,18 +85,18 @@ public class UserController {
 
     @GetMapping("/profile")
     @PreAuthorize("isAuthenticated()")
-    public ModelAndView editProfile(ModelAndView modelAndView, Model model, ModelMapper mapper, Principal principal) {
-        UserServiceModel userServiceModel = this.userService.getUserServiceModelByUsername(principal.getName());
+    public ModelAndView editProfile(ModelAndView modelAndView, Model model, Principal principal) throws UserAlreadyBannedException {
+        UserServiceModel userServiceModel = this.userService.getNonDeletedUserServiceModelByUsername(principal.getName());
         modelAndView.setViewName("users-profile");
         modelAndView.addObject("title", "Edit Profile");
         modelAndView.addObject("username", principal.getName());
 
         if (!model.containsAttribute("userDataInput")) {
-            UserEditDataBindingModel userEditDataBindingModel = mapper.map(userServiceModel, UserEditDataBindingModel.class);
+            UserEditDataBindingModel userEditDataBindingModel = this.mapper.map(userServiceModel, UserEditDataBindingModel.class);
             model.addAttribute("userDataInput", userEditDataBindingModel);
         }
         if (!model.containsAttribute("userPasswordInput")) {
-            UserEditPasswordBindingModel userEditPasswordBindingModel = mapper.map(userServiceModel, UserEditPasswordBindingModel.class);
+            UserEditPasswordBindingModel userEditPasswordBindingModel = this.mapper.map(userServiceModel, UserEditPasswordBindingModel.class);
             model.addAttribute("userPasswordInput", userEditPasswordBindingModel);
         }
         if (model.containsAttribute("passwordError")) {
