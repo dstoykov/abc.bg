@@ -10,6 +10,9 @@
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:href="@{/admin/mails/inbox}">All Received</a>
                     </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/users/all}">Users</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li sec:authorize="!isAuthenticated()" class="nav-item">

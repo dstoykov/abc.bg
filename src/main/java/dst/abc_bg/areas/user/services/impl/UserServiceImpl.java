@@ -30,7 +30,7 @@ import java.util.Set;
 @Transactional
 public class UserServiceImpl implements UserService {
     private static final String PASSWORD_MISMATCH_EXCEPTION_MSG = "Passwords mismatch!";
-    private static final String USER_ALREADY_EXIST_EXCEPTION_MSG = "User with the sam email already exists!";
+    private static final String USER_ALREADY_EXIST_EXCEPTION_MSG = "User with the same email already exists!";
     private static final String ADMIN_USERNAME = "admin";
 
     private final ModelMapper mapper;
@@ -58,11 +58,6 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.findByUsernameEquals(bindingModel.getUsername()) != null) {
             throw new UserAlreadyExistsException(USER_ALREADY_EXIST_EXCEPTION_MSG);
         }
-    }
-
-    private void addUserToRole(User user, Role role) {
-        role.getUsers().add(user);
-        this.roleService.save(role);
     }
 
     private void checkAndSavePasswords(UserRegisterBindingModel bindingModel, User user) throws PasswordsMismatchException {
@@ -118,7 +113,7 @@ public class UserServiceImpl implements UserService {
         Role role = this.roleService.getUserRole();
         user.addRole(role);
         this.saveUserToDb(user);
-        this.addUserToRole(user, role);
+        this.roleService.addUserToRole(user, role);
 
         return this.mapper.map(user, UserServiceModel.class);
     }
@@ -126,9 +121,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel getNonDeletedUserServiceModelByUsername(String username) throws UserAlreadyBannedException {
         User user = this.userRepository.findUserByUsernameAndDeletedOnNull(username);
-        if (user == null) {
-            throw new UserAlreadyBannedException("User was already banned");
-        }
+        this.checkIfUserBanned(user);
 
         return this.mapper.map(user, UserServiceModel.class);
     }
@@ -136,9 +129,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel getDeletedUserByUsername(String username) throws UserNotBannedException {
         User user = this.userRepository.findByUsernameAndDeletedOnNotNull(username);
-        if (user == null) {
-            throw new UserNotBannedException("User wasn't banned");
-        }
+        this.checkIfUserNotBanned(user);
+
         return this.mapper.map(user, UserServiceModel.class);
     }
 

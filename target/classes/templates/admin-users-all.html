@@ -27,7 +27,7 @@
             </script>
         </div>
         <h2 class="text-center">All Users</h2>
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -40,7 +40,7 @@
             </thead>
             <tbody>
             <th:block th:each="userModel, iter : ${userModels}">
-                <tr th:classappend="${userModel.getDeletedOn()==null} ? 'table-active' : 'table-warning'">
+                <tr th:classappend="${userModel.getDeletedOn()==null} ? 'table-default' : 'table-warning'">
                     <th scope="row" th:text="${iter.index + 1}"></th>
                     <td th:text="${userModel.getUsername()}"></td>
                     <td th:text="${userModel.getFirstName()}"></td>

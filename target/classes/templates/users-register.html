@@ -20,13 +20,6 @@
                     /*]]>*/
                 </script>
             </div>
-            <div th:if="${passwordError}">
-                <script th:inline="javascript">
-                    /*<![CDATA[*/
-                    showNoty('error', 'ERROR: Passwords mismatch!');
-                    /*]]>*/
-                </script>
-            </div>
             <div th:if="${userExistsError}">
                 <script th:inline="javascript">
                     /*<![CDATA[*/
@@ -83,6 +76,7 @@
                     <th:block th:each="error : ${#fields.errors('confirmPassword')}">
                         <small class="text-danger" th:text="${error}"></small>
                     </th:block>
+                    <small th:if="${passwordError}" class="text-danger">Passwords don't match</small>
                 </div>
                 <div class="form-group mt-4">
                     <button type="submit" class="btn btn-primary mr-2">Register</button>

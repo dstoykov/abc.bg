@@ -66,7 +66,7 @@
                             <th:block th:each="error : ${#fields.errors('confirmPassword')}">
                                 <small class="text-danger" th:text="${error}"></small>
                             </th:block>
-                            <small th:if="${passwordError}" class="text-danger">Passwords doesn't match</small>
+                            <small th:if="${passwordError}" class="text-danger">Passwords don't match</small>
                         </div>
                     </fieldset>
                     <div class="form-group mt-4">

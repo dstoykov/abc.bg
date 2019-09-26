@@ -97,7 +97,7 @@ public class EmailController {
 
     @GetMapping("/inbox")
     public ModelAndView inboxMails(ModelAndView modelAndView, Principal principal) {
-        Set<ReceiveEmailViewModel> receiveEmailViewModels = this.receiveEmailService.allNonDeletedReceivedMailsForUser(principal.getName());
+        Set<ReceiveEmailViewModel> receiveEmailViewModels = this.receiveEmailService.getAllNonDeletedReceivedMailsForUser(principal.getName());
 
         modelAndView.setViewName("mails-inbox");
         modelAndView.addObject("title", "Inbox");

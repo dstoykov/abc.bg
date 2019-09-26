@@ -1,5 +1,6 @@
 package dst.abc_bg.areas.email.receive.util;
 
+import dst.abc_bg.areas.email.util.EmailConstraints;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
@@ -8,15 +9,10 @@ import java.util.*;
 
 @Component
 public class EmailReceiver {
-    private static final String ACCOUNT_NAME = "testov12r@gmail.com";
-    private static final String PASSWORD = "Pesho523";
     private static final String HOST = "pop.gmail.com";
     private static final String PORT = "995";
-    private static final String TRUE = "true";
     private static final String INBOX_FOLDER = "INBOX";
     private static final String POP3_SECURED_PROTOCOL = "pop3s";
-
-    private static final int ZERO_INDEX = 0;
 
     public Set<Message> receiveEmail() throws MessagingException {
         Properties properties = configProperties();
@@ -33,7 +29,7 @@ public class EmailReceiver {
         messages.forEach(m -> {
             try {
                 System.out.println(m.getSubject());
-                System.out.println(m.getFrom()[ZERO_INDEX].toString());
+                System.out.println(m.getFrom()[EmailConstraints.ZERO_INDEX].toString());
                 System.out.println(m.getContent().toString());
                 System.out.println(m.getContentType());
                 System.out.println(m.getSentDate().toString());
@@ -51,7 +47,7 @@ public class EmailReceiver {
 
     private Store configStore(Session session) throws MessagingException {
         Store store = session.getStore(POP3_SECURED_PROTOCOL);
-        store.connect(HOST, ACCOUNT_NAME, PASSWORD);
+        store.connect(HOST, EmailConstraints.ACCOUNT_NAME, EmailConstraints.PASSWORD);
 
         return store;
     }
@@ -64,7 +60,7 @@ public class EmailReceiver {
         Properties properties = new Properties();
         properties.put("mail.pop3.host", HOST);
         properties.put("mail.pop3.port", PORT);
-        properties.put("mail.pop3.starttls.enable", TRUE);
+        properties.put("mail.pop3.starttls.enable", EmailConstraints.TRUE);
         return properties;
     }
 

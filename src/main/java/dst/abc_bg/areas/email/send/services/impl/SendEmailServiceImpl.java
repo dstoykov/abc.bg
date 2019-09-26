@@ -1,6 +1,7 @@
 package dst.abc_bg.areas.email.send.services.impl;
 
 import dst.abc_bg.areas.email.send.entities.SendEmail;
+import dst.abc_bg.areas.email.util.EmailConstraints;
 import dst.abc_bg.areas.user.entities.User;
 import dst.abc_bg.areas.email.exceptions.CannotAccessMailException;
 import dst.abc_bg.areas.email.send.models.binding.SendEmailNewBindingModel;
@@ -25,8 +26,6 @@ import java.util.Set;
 @Service
 @Transactional
 public class SendEmailServiceImpl implements SendEmailService {
-    private static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
-
     private static final String FROM = "From";
     private static final String SPACE = " ";
     private static final String AT = "@";
@@ -79,7 +78,7 @@ public class SendEmailServiceImpl implements SendEmailService {
 
     private boolean checkIfEmailIsNull(SendEmail email) throws CannotAccessMailException {
         if (email == null) {
-            throw new CannotAccessMailException(CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
+            throw new CannotAccessMailException(EmailConstraints.CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
         }
 
         return true;

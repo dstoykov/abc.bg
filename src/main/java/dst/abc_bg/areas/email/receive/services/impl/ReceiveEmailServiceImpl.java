@@ -1,6 +1,7 @@
 package dst.abc_bg.areas.email.receive.services.impl;
 
 import dst.abc_bg.areas.email.receive.entities.ReceiveEmail;
+import dst.abc_bg.areas.email.util.EmailConstraints;
 import dst.abc_bg.areas.user.entities.User;
 import dst.abc_bg.areas.email.exceptions.CannotAccessMailException;
 import dst.abc_bg.areas.email.receive.models.service.ReceiveEmailServiceModel;
@@ -29,8 +30,6 @@ import java.util.regex.Pattern;
 @Service
 @Transactional
 public class ReceiveEmailServiceImpl implements ReceiveEmailService {
-    private static final String CANNOT_ACCESS_MAIL_EXCEPTION_MSG = "You cannot access this E-mail";
-    private static final Integer INITIAL_INDEX = 0;
     private static final Integer MATCHER_GROUP_ONE = 1;
     private static final Integer MATCHER_GROUP_TWO = 2;
 
@@ -85,7 +84,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
 
     private boolean checkIfEmailIsNull(ReceiveEmail email) throws CannotAccessMailException {
         if (email == null) {
-            throw new CannotAccessMailException(CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
+            throw new CannotAccessMailException(EmailConstraints.CANNOT_ACCESS_MAIL_EXCEPTION_MSG);
         }
 
         return true;
@@ -93,7 +92,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
 
     private Set<ReceiveEmail> getMessagesAsSetOfReceiveEmails(Pattern senderEmail, Pattern recipientUsername, Set<Message> messages, int newMessagesCount) throws IOException, MessagingException, UserAlreadyBannedException {
         Set<ReceiveEmail> newMessages = new LinkedHashSet<>();
-        int i = INITIAL_INDEX;
+        int i = EmailConstraints.ZERO_INDEX;
         for (Message message : messages) {
             if (i >= newMessagesCount) {
                 break;
@@ -140,7 +139,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
     }
 
     private boolean addSenderToMail(Pattern senderEmail, Message message, ReceiveEmail receiveEmail) throws MessagingException {
-        String sender = message.getFrom()[INITIAL_INDEX].toString();
+        String sender = message.getFrom()[EmailConstraints.ZERO_INDEX].toString();
         Matcher matcher = senderEmail.matcher(sender);
         if (matcher.find()) {
             receiveEmail.setSender(matcher.group(MATCHER_GROUP_ONE));
@@ -170,7 +169,7 @@ public class ReceiveEmailServiceImpl implements ReceiveEmailService {
     }
 
     @Override
-    public Set<ReceiveEmailViewModel> allNonDeletedReceivedMailsForUser(String username) {
+    public Set<ReceiveEmailViewModel> getAllNonDeletedReceivedMailsForUser(String username) {
         Set<ReceiveEmail> allByDeletedOnNull = this.emailRepository.getAllByRecipientAndDeletedOnNull(username);
         Set<ReceiveEmailViewModel> receiveEmailViewModels = this.mapListOfEmailToListOfViewModel(allByDeletedOnNull);
 

@@ -3,6 +3,7 @@ package dst.abc_bg.areas.role.services.impl;
 import dst.abc_bg.areas.role.entities.Role;
 import dst.abc_bg.areas.role.repositories.RoleRepository;
 import dst.abc_bg.areas.role.services.RoleService;
+import dst.abc_bg.areas.user.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,11 @@ public class RoleServiceImpl implements RoleService {
     public Role save(Role role) {
         this.roleRepository.save(role);
         return role;
+    }
+
+    @Override
+    public Role addUserToRole(User user, Role role) {
+        role.getUsers().add(user);
+        return this.save(role);
     }
 }

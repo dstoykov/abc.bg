@@ -9,7 +9,7 @@ import java.util.Set;
 public interface ReceiveEmailService {
     Set<ReceiveEmailServiceModel> receiveEmails() throws Exception;
 
-    Set<ReceiveEmailViewModel> allNonDeletedReceivedMailsForUser(String username);
+    Set<ReceiveEmailViewModel> getAllNonDeletedReceivedMailsForUser(String username);
 
     ReceiveEmailViewModel getNonDeletedReceivedEmailViewModelById(String id, String name) throws CannotAccessMailException;
 
