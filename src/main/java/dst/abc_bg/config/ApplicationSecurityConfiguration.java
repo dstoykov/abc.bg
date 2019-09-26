@@ -30,7 +30,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     private static final Integer TOKEN_VALIDITY_SECONDS = 100;
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers(STYLES, SCRIPTS, IMAGES, FAVICON);
     }
 

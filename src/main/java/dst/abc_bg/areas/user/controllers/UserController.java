@@ -34,12 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login(ModelAndView modelAndView, Model model) {
+    public ModelAndView login(@RequestParam(required = false) String error, ModelAndView modelAndView, Model model) {
         modelAndView.setViewName("users-login");
         modelAndView.addObject("title", "Login");
         if (model.containsAttribute("success")) {
             modelAndView.addObject("success");
         }
+            modelAndView.addObject("loginError", error);
 
         return modelAndView;
     }
@@ -71,7 +72,7 @@ public class UserController {
             try {
                 this.userService.register(userBindingModel);
                 modelAndView.setViewName("redirect:login");
-                redirectAttributes.addFlashAttribute("success", "Successfully registered");
+                redirectAttributes.addFlashAttribute("success", "success");
             } catch (PasswordsMismatchException e) {
                 redirectAttributes.addFlashAttribute("passwordError", "error");
                 redirectAttributes.addFlashAttribute("registerInput", userBindingModel);
